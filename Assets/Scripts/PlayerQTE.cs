@@ -1,23 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerQTE : MonoBehaviour
 {
-    public InputAction QTEAction;
+    public InputAction up;
+    public InputAction down;
+    public InputAction left;
+    public InputAction right;
 
-    Vector2 move;
+    public QTEManager qteManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        QTEAction.Enable();
+        up.Enable();
+        down.Enable();
+        left.Enable();
+        right.Enable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        move = QTEAction.ReadValue<Vector2>();
-        Debug.Log(move);
+        if (up.WasPressedThisFrame())
+        {
+            Debug.Log("Up");
+            qteManager.DoQTE("up");
+        }
+        if (down.WasPressedThisFrame())
+        {
+            Debug.Log("Down");
+            qteManager.DoQTE("down");
+        }
+        if (left.WasPressedThisFrame())
+        {
+            Debug.Log("Left");
+            qteManager.DoQTE("left");
+        }
+        if (right.WasPressedThisFrame())
+        {
+            Debug.Log("Right");
+            qteManager.DoQTE("right");
+        }
     }
 }

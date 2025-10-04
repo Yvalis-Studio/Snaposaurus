@@ -1,22 +1,38 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class QTEManager : MonoBehaviour
 {
-    public TextMeshProUGUI promptText;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI nextKeyText;
     public float timeLimit = 2f;
     public KeyCode targetKey = KeyCode.Space;
+
 
     private float timer;
     private bool qteActive = false;
     private bool success = false;
 
+    private string[] possibleKeys = { "up", "down", "left", "right" };
+    private List<string> qteKeyList = new List<string>();
+    private string qteNextKey = "up";
+
+    public DinosaurQTE dinosaur;
+
     void Start()
     {
-        StartQTE(KeyCode.E, 5.0f);
-        
-        // promptText.text = $"Time left : {timer}";
+        StartQTE(5.0f);
+
+        // foreach (var key in targetKeyList)
+        // {
+        //     Debug.Log(key);
+        // }
+
+        // timerText.text = $"Time left : {timer}";
     }
 
     void Update()
@@ -24,47 +40,80 @@ public class QTEManager : MonoBehaviour
         if (qteActive)
         {
             timer -= Time.deltaTime;
-            promptText.text = $"Time left : {timer}";
-            if (Input.GetKeyDown(targetKey))
-            {
-                QTESuccess();
-            }
-            else if (timer <= 0f)
+            timerText.text = $"Time left : {timer}";
+
+            if (timer <= 0f)
             {
                 QTEFail();
             }
         }
     }
 
-    public void StartQTE(KeyCode key, float duration)
+    public void StartQTE(float duration)
     {
-        targetKey = key;
+        GenerateQTEKeyList(dinosaur.qteLength);
+
         timeLimit = duration;
         timer = duration;
         qteActive = true;
         success = false;
 
-        promptText.text = $"Press {key.ToString()}!";
-        promptText.gameObject.SetActive(true);
+        GetNextKey();
+        nextKeyText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);
+    }
+
+    void GenerateQTEKeyList(int length)
+    {
+        while (length >= 0)
+        {
+            length--;
+            string chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count() - 1)];
+            qteKeyList.Add(chosenKey);
+            Debug.Log(qteKeyList);
+        }
+    }
+
+    bool GetNextKey()
+    {
+        if (qteKeyList.Count > 0)
+        {
+            qteNextKey = qteKeyList[0];
+            qteKeyList.RemoveAt(0);
+            nextKeyText.text = qteNextKey;
+            return true;
+        }
+        return false;
     }
 
     void QTESuccess()
     {
         success = true;
         qteActive = false;
-        promptText.text = "Success!";
-        Invoke(nameof(HidePrompt), 0.5f);
+        nextKeyText.text = "Success!";
+        // Invoke(nameof(HidePrompt), 0.5f);
     }
 
     void QTEFail()
     {
         qteActive = false;
-        promptText.text = "Failed!";
-        Invoke(nameof(HidePrompt), 0.5f);
+        nextKeyText.text = "Failed!";
+        // Invoke(nameof(HidePrompt), 0.5f);
     }
 
-    void HidePrompt()
+    // void HidePrompt()
+    // {
+    //     timerText.gameObject.SetActive(false);
+    // }
+
+    public void DoQTE(string key)
     {
-        promptText.gameObject.SetActive(false);
+        if (qteActive && key == qteNextKey.ToLower())
+        {
+            if (!GetNextKey())
+            {
+                QTESuccess();
+            }
+        }
     }
 }
