@@ -517,7 +517,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acd41f156d0a1946a9d2611665c0fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuParallax
-  offsetMultiplier: -0.6
+  offsetMultiplier: 0.5
   smoothTime: 0.3
 --- !u!1 &267454265
 GameObject:
@@ -1141,7 +1141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -47.9
+      value: -26.439919
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1216,6 +1216,10 @@ PrefabInstance:
     - target: {fileID: 230561731152607112, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 230561731152607112, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1519522281873294947, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_Pivot.x
@@ -1650,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acd41f156d0a1946a9d2611665c0fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuParallax
-  offsetMultiplier: 0
+  offsetMultiplier: 0.5
   smoothTime: 0.3
 --- !u!1 &585711249
 GameObject:
@@ -1733,7 +1737,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1879,7 +1883,7 @@ Transform:
   m_GameObject: {fileID: 660919049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1892,7 +1896,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660919049}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
@@ -2264,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 844486415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.551506, y: -1.4308999, z: -6.77}
+  m_LocalPosition: {x: -3.551506, y: -1.6727273, z: -6.77}
   m_LocalScale: {x: 1.1634, y: 1.1634, z: 1.1634}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2539,7 +2543,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2626,7 +2630,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2713,7 +2717,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2837,7 +2841,7 @@ PrefabInstance:
       objectReference: {fileID: 1826791162}
     - target: {fileID: 3180623149877930053, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowTitle
+      value: ShowOptions
       objectReference: {fileID: 0}
     - target: {fileID: 7060411783584652006, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2983,7 +2987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -48.9
+      value: -27.439919
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3316,7 +3320,7 @@ PrefabInstance:
       objectReference: {fileID: 1826791162}
     - target: {fileID: 3180623149877930053, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowTitle
+      value: ShowOptions
       objectReference: {fileID: 0}
     - target: {fileID: 7060411783584652006, guid: 4a85bc5ff4d5e414dbbad77db71813ae, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4128,7 +4132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acd41f156d0a1946a9d2611665c0fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuParallax
-  offsetMultiplier: -0.3
+  offsetMultiplier: 0.5
   smoothTime: 0.3
 --- !u!1 &1160398206
 GameObject:
@@ -4362,7 +4366,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4797,7 +4801,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5113,7 +5117,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5622,7 +5626,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6017,7 +6021,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6270,7 +6274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -51.720173
+      value: -30.26009
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6631,7 +6635,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.61, y: 3.71}
+  m_Size: {x: 1.6, y: 3.71}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7048,26 +7052,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1753628343700212777, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1753628343700212777, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1753628343700212777, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445709680167375331, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2445709680167375331, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7101,10 +7085,6 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7134,7 +7114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -47.2
+      value: -25.739918
       objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7152,42 +7132,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5062868978779949420, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5062868978779949420, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5062868978779949420, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -7.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5310994063305913955, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010288980223897781, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7198687602881730467, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Name
       value: VolumeSlider_Template
       objectReference: {fileID: 0}
-    - target: {fileID: 7504772521719885612, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -10
+    - target: {fileID: 8971914772248869038, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7504772521719885612, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7504772521719885612, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5
-      objectReference: {fileID: 0}
+    - target: {fileID: 8971914772248869038, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
