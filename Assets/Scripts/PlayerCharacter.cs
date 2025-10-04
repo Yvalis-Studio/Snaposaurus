@@ -18,10 +18,12 @@ public class PlayerCharacter : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.5f;
+    public float groundCheckDistance = 0.1f;
+    public float groundCheckOffset = 0.1f;
     private bool isGrounded;
     private bool jumpPressed;
-    private CircleCollider2D circleCollider;
+    private Collider2D playerCollider;
+    private float lastJumpTime = -1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,12 +31,15 @@ public class PlayerCharacter : MonoBehaviour
         MoveAction.Enable();
         JumpAction.Enable();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        playerCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Ground check first
+        CheckGround();
+
         move = MoveAction.ReadValue<Vector2>();
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
@@ -43,14 +48,19 @@ public class PlayerCharacter : MonoBehaviour
             moveDirection.Normalize();
         }
 
-        // Check for jump input
-        if (JumpAction.WasPressedThisFrame() && isGrounded)
+        // Check for jump input - only if grounded
+        if (JumpAction.WasPressedThisFrame())
         {
-            jumpPressed = true;
+            if (isGrounded)
+            {
+                jumpPressed = true;
+                Debug.Log("Jump allowed - Grounded: " + isGrounded);
+            }
+            else
+            {
+                Debug.Log("Jump blocked - Not grounded");
+            }
         }
-
-        // Ground check
-        CheckGround();
     }
 
     void FixedUpdate()
@@ -60,6 +70,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             rigidbody2d.linearVelocity = new Vector2(rigidbody2d.linearVelocity.x, jumpForce);
             jumpPressed = false;
+            lastJumpTime = Time.time;
         }
 
         // Better jump physics
@@ -80,10 +91,22 @@ public class PlayerCharacter : MonoBehaviour
 
     void CheckGround()
     {
-        // Cast from bottom of collider
-        Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - circleCollider.radius);
+        // Only check if we're falling or standing (not jumping up)
+        if (rigidbody2d.linearVelocity.y > 0.1f)
+        {
+            isGrounded = false;
+            return;
+        }
+
+        // Get the bottom of the player's collider
+        Bounds bounds = playerCollider.bounds;
+        Vector2 rayOrigin = new Vector2(bounds.center.x, bounds.min.y - groundCheckOffset);
+
+        // Cast a short ray downward, ignoring the player's layer
         RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, groundCheckDistance, groundLayer);
-        isGrounded = hit.collider != null;
+
+        // Only grounded if we hit something that's not us
+        isGrounded = hit.collider != null && hit.collider != playerCollider;
 
         // Debug visualization
         Debug.DrawRay(rayOrigin, Vector2.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
