@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 258659700}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheckLeft
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -559,7 +559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768803668}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheckRight
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 1984014621}
   - component: {fileID: 1984014623}
   - component: {fileID: 1984014622}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,6 +1126,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4204204137986602738, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204204137986602738, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7675162181207376822, guid: db875ea5249170148b92bace06db64ae, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1291,7 +1299,7 @@ MonoBehaviour:
   lowJumpMultiplier: 2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   groundCheckDistance: 0.5
   groundCheckOffset: 0.1
 --- !u!4 &3487109073317780498 stripped

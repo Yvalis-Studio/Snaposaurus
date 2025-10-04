@@ -51,14 +51,11 @@ public class PlayerCharacter : MonoBehaviour
         // Check for jump input - only if grounded
         if (JumpAction.WasPressedThisFrame())
         {
+            Debug.Log($"Space pressed! isGrounded: {isGrounded}");
             if (isGrounded)
             {
                 jumpPressed = true;
-                Debug.Log("Jump allowed - Grounded: " + isGrounded);
-            }
-            else
-            {
-                Debug.Log("Jump blocked - Not grounded");
+                Debug.Log("JUMPING!");
             }
         }
     }
@@ -100,15 +97,17 @@ public class PlayerCharacter : MonoBehaviour
 
         // Get the bottom of the player's collider
         Bounds bounds = playerCollider.bounds;
-        Vector2 rayOrigin = new Vector2(bounds.center.x, bounds.min.y - groundCheckOffset);
+        Vector2 checkPosition = new Vector2(bounds.center.x, bounds.min.y - 0.05f);
 
-        // Cast a short ray downward, ignoring the player's layer
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, groundCheckDistance, groundLayer);
+        // Use OverlapCircle to check for ground - more reliable with Composite Collider
+        Collider2D hit = Physics2D.OverlapCircle(checkPosition, 0.1f, groundLayer);
 
-        // Only grounded if we hit something that's not us
-        isGrounded = hit.collider != null && hit.collider != playerCollider;
+        // Only grounded if we hit something
+        isGrounded = hit != null;
+
+        Debug.Log($"CheckPos: {checkPosition}, Hit: {hit != null}, HitObject: {hit?.name}, GroundLayer: {groundLayer.value}");
 
         // Debug visualization
-        Debug.DrawRay(rayOrigin, Vector2.down * groundCheckDistance, isGrounded ? Color.green : Color.red);
+        Debug.DrawRay(checkPosition, Vector2.down * 0.1f, isGrounded ? Color.green : Color.red);
     }
 }
