@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,9 +25,12 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private float moveInput;
 
+    Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         // Enable input actions
         moveAction.Enable();
@@ -35,11 +39,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
         moveInput = moveAction.ReadValue<Vector2>().x;
+        animator.SetFloat("Speed", Math.Abs(moveInput));
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
+        {
+            animator.SetBool("Right", true);
+        }
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
+        {
+            animator.SetBool("Right", false);
+        }
+        
 
         // Check if grounded
         CheckGrounded();
+        animator.SetBool("isGrounded", isGrounded);
 
         // Jump
         if (jumpAction.WasPressedThisFrame() && isGrounded)
@@ -75,6 +91,8 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        animator.SetBool("isGrounded", false);
+        animator.SetTrigger("Jump");
     }
 
     void ApplyJumpPhysics()

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3731893112277974654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49, y: -1.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 993258230411522035}
   - component: {fileID: 3959534773878234379}
   m_Layer: 3
-  m_Name: PlayerCharacter_0
+  m_Name: PlayerCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,17 +115,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8428396418276117890, guid: bc16e1c83f3e29b4ba7ecfc9089f13f4, type: 3}
+  m_Sprite: {fileID: -1385891836073151765, guid: 12bcf7d7e67ab6344839b39c9925aefb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.22, y: 2.54}
+  m_Size: {x: 3.537971, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &842002676660060624
 Rigidbody2D:
   serializedVersion: 5
@@ -250,7 +250,7 @@ Animator:
   m_GameObject: {fileID: 4204204137986602738}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 781bb8fcf9077bc4abf632a542cd7422, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0fa8cbcc7bb28444993f694e6c1e0cbe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -272,7 +272,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dec3fa4139025954f9b93bd1ade8a793, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -296,6 +296,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.63315916, y: -0.13956738}
-  m_Size: {x: 1.6792173, y: 3.5166206}
+  m_Offset: {x: 0, y: 1.8}
+  m_Size: {x: 1.5, y: 3.6}
   m_Direction: 0
