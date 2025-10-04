@@ -24,6 +24,8 @@ public class PlayerCharacter : MonoBehaviour
     private bool jumpPressed;
     private Collider2D playerCollider;
     private float lastJumpTime = -1f;
+    public AudioSource footstepsSound;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,6 +62,16 @@ public class PlayerCharacter : MonoBehaviour
             {
                 Debug.Log("Jump blocked - Not grounded");
             }
+        }
+
+        if (!Mathf.Approximately(move.x, 0.0f) && isGrounded)
+        {
+            footstepsSound.enabled = true;
+            Debug.Log(speed);
+        }
+        else
+        {
+            footstepsSound.enabled = false;
         }
     }
 
