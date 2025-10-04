@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [Header("Input")]
     public InputAction moveAction;
     public InputAction jumpAction;
+
+    [Header("SoundEffects")]
+    public AudioSource footstepsSound;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -51,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Right", false);
         }
-        
+
 
         // Check if grounded
         CheckGrounded();
@@ -61,6 +66,15 @@ public class PlayerController : MonoBehaviour
         if (jumpAction.WasPressedThisFrame() && isGrounded)
         {
             Jump();
+        }
+
+        if (!Mathf.Approximately(moveInput, 0.0f) && isGrounded)
+        {
+            footstepsSound.enabled = true;
+        }
+        else
+        {
+            footstepsSound.enabled = false;
         }
     }
 
