@@ -22,8 +22,10 @@ public class QTEManager : MonoBehaviour
     float timer;
 
     // QTE Status
-    bool qteActive = false;
-    bool success = false;
+    public bool isActive { get { return qteActive; } }
+    bool qteActive;
+    public bool isSuccess { get { return success; } }
+    public bool success;
 
     string[] possibleKeys = { "up", "down", "left", "right" };
     List<string> qteKeyList = new List<string>();
@@ -34,6 +36,8 @@ public class QTEManager : MonoBehaviour
         dbmTimer = dbmPull;
         nextKeyText.text = $"{dbmTimer} s";
         timerText.text = "Get Ready...";
+        success = false;
+        qteActive = false;
     }
 
     void Update()
@@ -79,7 +83,7 @@ public class QTEManager : MonoBehaviour
 
     void GenerateQTEKeyList(int length)
     {
-        while (length >= 0)
+        while (length > 0)
         {
             length--;
             string chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count() - 1)];
