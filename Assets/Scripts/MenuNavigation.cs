@@ -18,32 +18,52 @@ public class MenuNavigation : MonoBehaviour
     // Navigation principale
     public void ShowTitle()
     {
+        Debug.Log("ShowTitle called");
         HideAll();
-        titlePanel.SetActive(true);
+        if (titlePanel != null)
+            titlePanel.SetActive(true);
+        else
+            Debug.LogError("titlePanel is null!");
     }
 
     public void ShowOptions()
     {
+        Debug.Log("ShowOptions called");
         HideAll();
-        optionsPanel.SetActive(true);
+        if (optionsPanel != null)
+            optionsPanel.SetActive(true);
+        else
+            Debug.LogError("optionsPanel is null!");
     }
 
     public void ShowControls()
     {
+        Debug.Log("ShowControls called");
         HideAll();
-        controlsPanel.SetActive(true);
+        if (controlsPanel != null)
+            controlsPanel.SetActive(true);
+        else
+            Debug.LogError("controlsPanel is null!");
     }
 
     public void ShowAudio()
     {
+        Debug.Log("ShowAudio called");
         HideAll();
-        audioPanel.SetActive(true);
+        if (audioPanel != null)
+            audioPanel.SetActive(true);
+        else
+            Debug.LogError("audioPanel is null!");
     }
 
     public void ShowLevelSelect()
     {
+        Debug.Log("ShowLevelSelect called");
         HideAll();
-        levelSelectPanel.SetActive(true);
+        if (levelSelectPanel != null)
+            levelSelectPanel.SetActive(true);
+        else
+            Debug.LogError("levelSelectPanel is null!");
     }
 
     // Utilitaire
