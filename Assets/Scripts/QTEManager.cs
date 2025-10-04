@@ -2,45 +2,59 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class QTEManager : MonoBehaviour
 {
+    // GameObject References
+    public DinosaurQTE dinosaur;
+
+    // UI
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI nextKeyText;
-    public float timeLimit = 2f;
-    public KeyCode targetKey = KeyCode.Space;
 
 
-    private float timer;
-    private bool qteActive = false;
-    private bool success = false;
+    // DBM PULL
+    public float dbmPull = 3.0f;
+    float dbmTimer;
 
-    private string[] possibleKeys = { "up", "down", "left", "right" };
-    private List<string> qteKeyList = new List<string>();
-    private string qteNextKey = "up";
+    // QTE TIMER
+    float timeLimit;
+    float timer;
 
-    public DinosaurQTE dinosaur;
+    // QTE Status
+    bool qteActive = false;
+    bool success = false;
+
+    string[] possibleKeys = { "up", "down", "left", "right" };
+    List<string> qteKeyList = new List<string>();
+    string qteNextKey = "up";
 
     void Start()
     {
-        StartQTE(5.0f);
-
-        // foreach (var key in targetKeyList)
-        // {
-        //     Debug.Log(key);
-        // }
-
-        // timerText.text = $"Time left : {timer}";
+        dbmTimer = dbmPull;
+        nextKeyText.text = $"{dbmTimer} s";
+        timerText.text = "Get Ready...";
     }
 
     void Update()
     {
+        // Prepull
+        if (dbmTimer > 0)
+        {
+            dbmTimer -= Time.deltaTime;
+            nextKeyText.text = $"{dbmTimer.ToString("F2")} s";
+
+            if (dbmTimer <= 0)
+            {
+                StartQTE();
+            }
+        }
+
+        // In fight
         if (qteActive)
         {
             timer -= Time.deltaTime;
-            timerText.text = $"Time left : {timer}";
+            timerText.text = $"Time left : {timer.ToString("F2")} s";
 
             if (timer <= 0f)
             {
@@ -49,12 +63,12 @@ public class QTEManager : MonoBehaviour
         }
     }
 
-    public void StartQTE(float duration)
+    public void StartQTE()
     {
         GenerateQTEKeyList(dinosaur.qteLength);
 
-        timeLimit = duration;
-        timer = duration;
+        timeLimit = dinosaur.qteTimer;
+        timer = dinosaur.qteTimer;
         qteActive = true;
         success = false;
 
@@ -70,7 +84,6 @@ public class QTEManager : MonoBehaviour
             length--;
             string chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count() - 1)];
             qteKeyList.Add(chosenKey);
-            Debug.Log(qteKeyList);
         }
     }
 
@@ -80,10 +93,24 @@ public class QTEManager : MonoBehaviour
         {
             qteNextKey = qteKeyList[0];
             qteKeyList.RemoveAt(0);
-            nextKeyText.text = qteNextKey;
+            UpdateKeyPreview();
             return true;
         }
         return false;
+    }
+
+    void UpdateKeyPreview()
+    {
+        string previewText = qteNextKey;
+        if (qteKeyList.Count > 0)
+        {
+            previewText += $" - {qteKeyList[0]}";
+        }
+        if (qteKeyList.Count > 1)
+        {
+            previewText += $" - {qteKeyList[1]}";
+        }
+        nextKeyText.text = previewText;
     }
 
     void QTESuccess()
@@ -100,11 +127,6 @@ public class QTEManager : MonoBehaviour
         nextKeyText.text = "Failed!";
         // Invoke(nameof(HidePrompt), 0.5f);
     }
-
-    // void HidePrompt()
-    // {
-    //     timerText.gameObject.SetActive(false);
-    // }
 
     public void DoQTE(string key)
     {

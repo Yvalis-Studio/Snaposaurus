@@ -644,10 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29fc7888d4c8ae43998dea5211f7cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTEManager
+  dinosaur: {fileID: 1884600087}
   timerText: {fileID: 1481496145}
   nextKeyText: {fileID: 904638554}
-  timeLimit: 5
-  targetKey: 32
+  dbmPull: 3
 --- !u!4 &851164213
 Transform:
   m_ObjectHideFlags: 0
@@ -697,8 +697,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -4}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 287.07, y: -0.77}
+  m_SizeDelta: {x: 840.15, y: 56.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904638554
 MonoBehaviour:
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -51.17964, w: 0}
+  m_margin: {x: 0, y: 0, z: 0.54953766, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -912,7 +912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -422, y: 483}
+  m_AnchoredPosition: {x: 1, y: 332}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481496145
@@ -1044,6 +1044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b776f9444f314d9c81e7c6c7e373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
+  qteTimer: 5
+  qteLength: 10
 --- !u!212 &1884600088
 SpriteRenderer:
   m_ObjectHideFlags: 0

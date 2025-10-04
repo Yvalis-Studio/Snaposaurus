@@ -24,22 +24,18 @@ public class PlayerQTE : MonoBehaviour
     {
         if (up.WasPressedThisFrame())
         {
-            Debug.Log("Up");
             qteManager.DoQTE("up");
         }
         if (down.WasPressedThisFrame())
         {
-            Debug.Log("Down");
             qteManager.DoQTE("down");
         }
         if (left.WasPressedThisFrame())
         {
-            Debug.Log("Left");
             qteManager.DoQTE("left");
         }
         if (right.WasPressedThisFrame())
         {
-            Debug.Log("Right");
             qteManager.DoQTE("right");
         }
     }
