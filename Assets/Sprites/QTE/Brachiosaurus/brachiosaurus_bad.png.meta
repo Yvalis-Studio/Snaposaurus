@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3180337f569e4a645b41392a7dd318c7
+guid: 783fa62ceb9a5144ebe09ad2f107e0b5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 120527698710657837
-    second: test_echelle_amande4_0
+      213: -7401154631300024416
+    second: brachiosaurus_bad_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_echelle_amande4_0
+      name: brachiosaurus_bad_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 39
+        y: 42
+        width: 1059
+        height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2b7e3bad433ca100800000000000000
-      internalID: 120527698710657837
+      spriteID: 0a7ff996311d94990800000000000000
+      internalID: -7401154631300024416
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      test_echelle_amande4_0: 120527698710657837
+      brachiosaurus_bad_0: -7401154631300024416
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3180337f569e4a645b41392a7dd318c7
+guid: 79761d3a1091cf74b95aa8c510a06487
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 120527698710657837
-    second: test_echelle_amande4_0
+      213: -1604113851888788210
+    second: godzilla_perfect_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_echelle_amande4_0
+      name: godzilla_perfect_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 7
+        y: 93
+        width: 1110
+        height: 927
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2b7e3bad433ca100800000000000000
-      internalID: 120527698710657837
+      spriteID: e0d92ee53fa0db9e0800000000000000
+      internalID: -1604113851888788210
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      test_echelle_amande4_0: 120527698710657837
+      godzilla_perfect_0: -1604113851888788210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

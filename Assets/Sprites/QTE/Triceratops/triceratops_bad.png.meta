@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3180337f569e4a645b41392a7dd318c7
+guid: e659b008c7c04b540ab06b4f4b0b43b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 120527698710657837
-    second: test_echelle_amande4_0
+      213: 2577301716019558619
+    second: triceratops_bad_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_echelle_amande4_0
+      name: triceratops_bad_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 84
+        y: 30
+        width: 965
+        height: 1025
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2b7e3bad433ca100800000000000000
-      internalID: 120527698710657837
+      spriteID: bd8b95e614a64c320800000000000000
+      internalID: 2577301716019558619
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      test_echelle_amande4_0: 120527698710657837
+      triceratops_bad_0: 2577301716019558619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
