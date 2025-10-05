@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public InputAction moveAction;
     public InputAction jumpAction;
     public InputAction climbAction;
+    public InputAction interactAction;
 
     [Header("Ladder")]
     public bool isClimbing;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.RestorePlayerPosition(gameObject);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
         moveAction.Enable();
         jumpAction.Enable();
         climbAction.Enable();
+        interactAction.Enable();
     }
 
     void Update()
