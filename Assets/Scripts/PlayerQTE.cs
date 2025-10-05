@@ -10,9 +10,14 @@ public class PlayerQTE : MonoBehaviour
 
     public QTEManager qteManager;
 
+    // ANIM
+    Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         up.Enable();
         down.Enable();
         left.Enable();
@@ -22,21 +27,29 @@ public class PlayerQTE : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (up.WasPressedThisFrame())
+        if (qteManager.isActive)
         {
-            qteManager.DoQTE("up");
-        }
-        if (down.WasPressedThisFrame())
-        {
-            qteManager.DoQTE("down");
-        }
-        if (left.WasPressedThisFrame())
-        {
-            qteManager.DoQTE("left");
-        }
-        if (right.WasPressedThisFrame())
-        {
-            qteManager.DoQTE("right");
+            if (up.WasPressedThisFrame())
+            {
+                qteManager.DoQTE("up");
+            }
+            if (down.WasPressedThisFrame())
+            {
+                qteManager.DoQTE("down");
+            }
+            if (left.WasPressedThisFrame())
+            {
+                qteManager.DoQTE("left");
+            }
+            if (right.WasPressedThisFrame())
+            {
+                qteManager.DoQTE("right");
+            }
+
+            if (qteManager.isSuccess)
+            {
+                animator.SetTrigger("Success");
+            }
         }
     }
 }
