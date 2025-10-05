@@ -1075,6 +1075,42 @@ PrefabInstance:
       propertyPath: m_text
       value: MUSIC VOLUME
       objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1661326661}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1189,7 +1225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198687602881730467, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Name
-      value: VolumeSlider_Template (2)
+      value: VolumeSlider_Music
       objectReference: {fileID: 0}
     - target: {fileID: 7504772521719885612, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6920,6 +6956,7 @@ GameObject:
   - component: {fileID: 1661326659}
   - component: {fileID: 1661326658}
   - component: {fileID: 1661326660}
+  - component: {fileID: 1661326661}
   m_Layer: 5
   m_Name: AudioPanel
   m_TagString: Untagged
@@ -7003,6 +7040,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PanelTransition
   duration: 1.2
   slideOffset: {x: 0, y: -100}
+--- !u!114 &1661326661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661326656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acaa2bc81bb36134387f075a06a7afa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  audioMixer: {fileID: 24100000, guid: a8991fcdabac0fa4bae52a3d9f038c3d, type: 2}
 --- !u!1 &1666890819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7698,6 +7748,42 @@ PrefabInstance:
       propertyPath: m_text
       value: SOUND EFFECT VOLUME
       objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1661326661}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSoundVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7812,7 +7898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198687602881730467, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Name
-      value: VolumeSlider_Template (1)
+      value: VolumeSlider_SoundEffects
       objectReference: {fileID: 0}
     - target: {fileID: 7504772521719885612, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8827,6 +8913,46 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 26.82
       objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_MinValue
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1661326661}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMasterVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AudioSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3147879624297345550, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3426580887190137608, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8917,7 +9043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7198687602881730467, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Name
-      value: VolumeSlider_Template
+      value: VolumeSlider_Master
       objectReference: {fileID: 0}
     - target: {fileID: 8971914772248869038, guid: 8ac83dbc70163f4479637a0d4ebf5cab, type: 3}
       propertyPath: m_Type
