@@ -22,13 +22,18 @@ public class PlayerController : MonoBehaviour
     [Header("Input")]
     public InputAction moveAction;
     public InputAction jumpAction;
+    public InputAction climbAction;
+
+    [Header("Ladder")]
+    public bool isClimbing;
 
     [Header("SoundEffects")]
     public AudioSource footstepsSound;
 
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private float moveInput;
+    Rigidbody2D rb;
+    bool isGrounded;
+    float moveInput;
+    float climbInput;
 
     Animator animator;
 
@@ -42,14 +47,25 @@ public class PlayerController : MonoBehaviour
         // Enable input actions
         moveAction.Enable();
         jumpAction.Enable();
+        climbAction.Enable();
     }
 
     void Update()
     {
-        // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
         moveInput = moveAction.ReadValue<Vector2>().x;
-        animator.SetFloat("Speed", Math.Abs(moveInput));
+        if (isClimbing)
+        {
+            climbInput = climbAction.ReadValue<Vector2>().y;
+            animator.SetBool("IsClimbing", true);
+        }
+        else
+        {
+            animator.SetBool("IsClimbing", false);
+        }
+
+        // Set Animation
+            animator.SetFloat("Speed", Math.Abs(moveInput));
         if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
         {
             Flip();
@@ -61,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
 
         // Check if grounded
-        CheckGrounded();
+            CheckGrounded();
         animator.SetBool("isGrounded", isGrounded);
 
         // Jump
@@ -82,8 +98,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Horizontal movement
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        // Movement
+        if (!isClimbing)
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, climbInput * moveSpeed);
+        }
+
 
         // Better jump physics
         ApplyJumpPhysics();
