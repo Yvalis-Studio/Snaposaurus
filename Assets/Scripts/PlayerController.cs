@@ -30,9 +30,10 @@ public class PlayerController : MonoBehaviour
     [Header("SoundEffects")]
     public AudioSource footstepsSound;
 
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private float moveInput;
+    Rigidbody2D rb;
+    bool isGrounded;
+    float moveInput;
+    float climbInput;
 
     Animator animator;
 
@@ -51,9 +52,9 @@ public class PlayerController : MonoBehaviour
     {
         // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
+        moveInput = moveAction.ReadValue<Vector2>().x;
         if (!isClimbing)
         {
-            moveInput = moveAction.ReadValue<Vector2>().x;
             animator.SetFloat("Speed", Math.Abs(moveInput));
 
             if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            moveInput = climbAction.ReadValue<Vector2>().y;
+            climbInput = climbAction.ReadValue<Vector2>().y;
         }
 
 
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.x);
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, climbInput * moveSpeed);
         }
 
 
