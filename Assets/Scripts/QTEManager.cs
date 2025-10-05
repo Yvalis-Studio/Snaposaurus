@@ -432,8 +432,8 @@ public class QTEManager : MonoBehaviour
         {
             successImage.gameObject.SetActive(false);
         }
-        nextKeyText.text = "Failed!";
-        GameManager.Instance.Dino1.score = 1;
+        // nextKeyText.text = "Failed!";
+        // GameManager.Instance.Dino1.score = 1;
         // SceneTransition.Instance.TransitionToScene("Level 1");
         Invoke(nameof(ExitQTE), 1.0f);
     }
@@ -519,16 +519,6 @@ public class QTEManager : MonoBehaviour
             if (slot != null)
             {
                 slot.gameObject.SetActive(false);
-            if (key == qteNextKey.ToLower())
-            {
-                if (!GetNextKey())
-                {
-                    QTESuccess();
-                }
-            }
-            else
-            {
-                perfect = false;
             }
         }
     }
