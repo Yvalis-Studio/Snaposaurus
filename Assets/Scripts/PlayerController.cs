@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.RestorePlayerPosition(gameObject);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
