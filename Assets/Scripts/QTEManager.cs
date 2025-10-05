@@ -27,6 +27,8 @@ public class QTEManager : MonoBehaviour
     public bool isSuccess { get { return success; } }
     public bool success;
 
+    bool perfect = true;
+
     string[] possibleKeys = { "up", "down", "left", "right" };
     List<string> qteKeyList = new List<string>();
     string qteNextKey = "up";
@@ -123,22 +125,46 @@ public class QTEManager : MonoBehaviour
         qteActive = false;
         nextKeyText.text = "Success!";
         // Invoke(nameof(HidePrompt), 0.5f);
+        if (perfect)
+        {
+            GameManager.Instance.Dino1.score = 3;
+        }
+        else
+        {
+            GameManager.Instance.Dino1.score = 2;
+        }
+        // SceneTransition.Instance.TransitionToScene("Level 1");
+        Invoke(nameof(ExitQTE), 1.0f);
     }
 
     void QTEFail()
     {
         qteActive = false;
         nextKeyText.text = "Failed!";
-        // Invoke(nameof(HidePrompt), 0.5f);
+        GameManager.Instance.Dino1.score = 1;
+        // SceneTransition.Instance.TransitionToScene("Level 1");
+        Invoke(nameof(ExitQTE), 1.0f);
+    }
+
+    void ExitQTE()
+    {
+        SceneTransition.Instance.TransitionToScene("Level 1");
     }
 
     public void DoQTE(string key)
     {
-        if (qteActive && key == qteNextKey.ToLower())
+        if (qteActive)
         {
-            if (!GetNextKey())
+            if (key == qteNextKey.ToLower())
             {
-                QTESuccess();
+                if (!GetNextKey())
+                {
+                    QTESuccess();
+                }
+            }
+            else
+            {
+                perfect = false;
             }
         }
     }
