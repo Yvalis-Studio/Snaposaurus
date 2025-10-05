@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fb151f7050b99d1469e54cb68e094399
+guid: 2967769f8b20402408f3aaf3dd7cf046
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4346244404228752641
-    second: Arrow_0
+      213: 5815138429892859216
+    second: photo1rate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Arrow_0
+      name: photo1rate_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 365
-        height: 231
+        x: 39
+        y: 42
+        width: 1059
+        height: 1038
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffa7ae2edb90fa3c0800000000000000
-      internalID: -4346244404228752641
+      spriteID: 0559c71979583b050800000000000000
+      internalID: 5815138429892859216
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Arrow_0: -4346244404228752641
+      photo1rate_0: 5815138429892859216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
