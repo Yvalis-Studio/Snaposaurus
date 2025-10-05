@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     [Header("Input")]
     public InputAction moveAction;
     public InputAction jumpAction;
+    public InputAction climbAction;
+
+    [Header("Ladder")]
+    public bool isClimbing;
 
     [Header("SoundEffects")]
     public AudioSource footstepsSound;
@@ -40,21 +44,30 @@ public class PlayerController : MonoBehaviour
         // Enable input actions
         moveAction.Enable();
         jumpAction.Enable();
+        climbAction.Enable();
     }
 
     void Update()
     {
         // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
-        moveInput = moveAction.ReadValue<Vector2>().x;
-        animator.SetFloat("Speed", Math.Abs(moveInput));
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
+        if (!isClimbing)
         {
-            animator.SetBool("Right", true);
+            moveInput = moveAction.ReadValue<Vector2>().x;
+            animator.SetFloat("Speed", Math.Abs(moveInput));
+
+            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
+            {
+                animator.SetBool("Right", true);
+            }
+            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
+            {
+                animator.SetBool("Right", false);
+            }
         }
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
+        else
         {
-            animator.SetBool("Right", false);
+            moveInput = climbAction.ReadValue<Vector2>().y;
         }
 
 
@@ -80,8 +93,16 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Horizontal movement
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        // Movement
+        if (!isClimbing)
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.x);
+        }
+
 
         // Better jump physics
         ApplyJumpPhysics();

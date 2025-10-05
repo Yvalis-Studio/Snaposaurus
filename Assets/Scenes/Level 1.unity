@@ -872,6 +872,146 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 2077494338}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_Name
+      value: Climb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 521b0f52-958c-46b3-80fb-0217cf6102fc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Id
+      value: a84dadb8-e237-48dd-b354-262f5ab98be5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Id
+      value: a84dadb8-e237-48dd-b354-262f5ab98be5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: a4914fdc-d9bf-41a6-9e95-25124f984098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 645cd0fa-ed6e-47d7-859c-e075f06387f4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 793e1193-6da3-449c-a38b-4776722b39b2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[3].m_Id
+      value: d20d25b5-3305-404a-9227-e5844f081252
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[4].m_Id
+      value: d20d25b5-3305-404a-9227-e5844f081252
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/a
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/w
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/s
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[3].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Climb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Climb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Climb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Climb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: climbAction.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Climb
+      objectReference: {fileID: 0}
     - target: {fileID: 3813251549020391645, guid: db875ea5249170148b92bace06db64ae, type: 3}
       propertyPath: m_SortingOrder
       value: 50
@@ -1165,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808190000}
-  - component: {fileID: 808189999}
+  - component: {fileID: 808190001}
   - component: {fileID: 808189998}
   m_Layer: 0
   m_Name: Ladder
@@ -1186,28 +1326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fac69cf094bae4099d3e279abe7ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ladder
-  isInRange: 0
---- !u!65 &808189999
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808189997}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8877382, y: 6.3947153, z: 1}
-  m_Center: {x: -0.034143925, y: 0.7853073, z: 0}
 --- !u!4 &808190000
 Transform:
   m_ObjectHideFlags: 0
@@ -1223,6 +1341,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &808190001
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808189997}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &840120670
 GameObject:
   m_ObjectHideFlags: 0

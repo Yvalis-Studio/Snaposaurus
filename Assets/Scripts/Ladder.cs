@@ -4,25 +4,30 @@ using System.Collections.Generic;
 
 public class Ladder : MonoBehaviour
 {
-    public bool isInRange;
+    private bool isInRange;
+    private PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isInRange)
+        {
+            playerController.isClimbing = true;
+        }
+        else
+        {
+            playerController.isClimbing = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController player = collision.GetComponent<PlayerController>();
-
-        Debug.Log(player);
-        if (player.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             isInRange = true;
         }
@@ -30,9 +35,7 @@ public class Ladder : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerController player = collision.GetComponent<PlayerController>();
-
-        if (player.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             isInRange = false;
         }
