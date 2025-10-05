@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55d2b804d5bdc3428c03ff8d00ac778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  pictureDino1: 0
-  pictureDino2: 0
-  pictureDino3: 0
+  Dino1: {fileID: 4596932163977966795, guid: 9a7ba51e2913dc04abd5a812cc427eae, type: 3}
   playerPosition: {x: 0, y: 0, z: 0}

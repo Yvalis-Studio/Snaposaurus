@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6960668538580586467, guid: 2b3d905b7331f8841870fa52b303befa, type: 3}
+  m_Sprite: {fileID: 8271553017241889795, guid: 2d300394f0d07d746ad677003bd6b061, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.96875, y: 6.34375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,3 +105,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
   qteTimer: 5
   qteLength: 3
+  isActive: 1
+  score: 0
