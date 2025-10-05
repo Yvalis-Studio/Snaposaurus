@@ -114,7 +114,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -1385891836073151765, guid: 12bcf7d7e67ab6344839b39c9925aefb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,22 +190,6 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Move
       m_Flags: 4
-    - m_Name: up
-      m_Id: 814ae58f-0f68-481c-808c-15a1e9c07ed8
-      m_Path: 
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 68db43ac-1c62-4534-8edb-0bda9071569e
-      m_Path: 
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 8
     - m_Name: left
       m_Id: 521b0f52-958c-46b3-80fb-0217cf6102fc
       m_Path: <Keyboard>/a
@@ -240,6 +224,41 @@ MonoBehaviour:
       m_Action: Jump
       m_Flags: 0
     m_Flags: 0
+  climbAction:
+    m_Name: Climb
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7b59a5a8-2d89-4d42-a477-b246a096ac7f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: a4914fdc-d9bf-41a6-9e95-25124f984098
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Climb
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 645cd0fa-ed6e-47d7-859c-e075f06387f4
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Climb
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 793e1193-6da3-449c-a38b-4776722b39b2
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Climb
+      m_Flags: 8
+    m_Flags: 0
+  isClimbing: 0
+  footstepsSound: {fileID: 0}
 --- !u!95 &993258230411522035
 Animator:
   serializedVersion: 7
