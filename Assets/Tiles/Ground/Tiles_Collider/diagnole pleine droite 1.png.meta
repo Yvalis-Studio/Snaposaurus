@@ -129,7 +129,7 @@ TextureImporter:
     customData: 
     physicsShape:
     - - {x: 35, y: 34.5}
-      - {x: -35, y: 0.5}
+      - {x: -35, y: 6.5}
       - {x: -35, y: -34.5}
       - {x: 35, y: -34.5}
     bones: []
