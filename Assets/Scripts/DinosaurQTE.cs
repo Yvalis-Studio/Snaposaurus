@@ -115,4 +115,6 @@ public class DinosaurQTE : MonoBehaviour
         photoShown = false;
         qteWasActive = false;
     }
+    public bool isActive = true;
+    public int score = 0;
 }
