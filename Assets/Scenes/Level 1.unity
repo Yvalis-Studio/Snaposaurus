@@ -255,37 +255,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &258659699
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 258659700}
-  m_Layer: 0
-  m_Name: GroundCheckLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &258659700
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258659699}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.142, y: -0.036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411541556
 GameObject:
   m_ObjectHideFlags: 0
@@ -6939,7 +6908,7 @@ GameObject:
   - component: {fileID: 909687444}
   - component: {fileID: 909687445}
   m_Layer: 0
-  m_Name: dino_1_0
+  m_Name: triceratops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7009,7 +6978,7 @@ SpriteRenderer:
   m_SortingOrder: 25
   m_Sprite: {fileID: -4149455789763475064, guid: c3086045ac6540a4eb59c4d13a2caa8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.1, y: 2.84}
@@ -7034,7 +7003,7 @@ GameObject:
   - component: {fileID: 1012419711}
   - component: {fileID: 1012419712}
   m_Layer: 0
-  m_Name: diplo_couleur_2_0
+  m_Name: diplodocus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7104,7 +7073,7 @@ SpriteRenderer:
   m_SortingOrder: 25
   m_Sprite: {fileID: 8271553017241889795, guid: 2d300394f0d07d746ad677003bd6b061, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.46, y: 4.06}
@@ -7473,7 +7442,7 @@ GameObject:
   - component: {fileID: 1535465799}
   - component: {fileID: 1535465800}
   m_Layer: 0
-  m_Name: tree2full_0
+  m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7911,37 +7880,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.2703934, y: 146.20949}
   m_EdgeRadius: 0
---- !u!1 &1768803667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1768803668}
-  m_Layer: 0
-  m_Name: GroundCheckRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1768803668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768803667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.336, y: -0.036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1813079760 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3862414145736123549, guid: d014f2016d93c0246805ce8433da6987, type: 3}
@@ -8086,7 +8024,7 @@ GameObject:
   - component: {fileID: 1922285701}
   - component: {fileID: 1922285702}
   m_Layer: 0
-  m_Name: buisson_0
+  m_Name: buisson
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8176,7 +8114,7 @@ GameObject:
   - component: {fileID: 1961768906}
   - component: {fileID: 1961768907}
   m_Layer: 0
-  m_Name: testbird_0
+  m_Name: archeopteryx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65491,7 +65429,7 @@ GameObject:
   - component: {fileID: 2080125722}
   - component: {fileID: 2080125723}
   m_Layer: 0
-  m_Name: godzilla_0
+  m_Name: godzilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65614,6 +65552,4 @@ SceneRoots:
   - {fileID: 643408374}
   - {fileID: 1507976052}
   - {fileID: 1123476196}
-  - {fileID: 258659700}
-  - {fileID: 1768803668}
   - {fileID: 1867016792}
