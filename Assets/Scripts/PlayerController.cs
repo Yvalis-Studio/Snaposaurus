@@ -57,10 +57,15 @@ public class PlayerController : MonoBehaviour
         if (isClimbing)
         {
             climbInput = climbAction.ReadValue<Vector2>().y;
+            animator.SetBool("IsClimbing", true);
+        }
+        else
+        {
+            animator.SetBool("IsClimbing", false);
         }
 
         // Set Animation
-        animator.SetFloat("Speed", Math.Abs(moveInput));
+            animator.SetFloat("Speed", Math.Abs(moveInput));
         if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
         {
             Flip();
