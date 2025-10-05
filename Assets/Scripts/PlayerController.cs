@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     Animator animator;
 
+    bool facingRight = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,30 +52,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
         moveInput = moveAction.ReadValue<Vector2>().x;
-        if (!isClimbing)
-        {
-            animator.SetFloat("Speed", Math.Abs(moveInput));
-
-            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
-            {
-                animator.SetBool("Right", true);
-            }
-            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
-            {
-                animator.SetBool("Right", false);
-            }
-        }
-        else
+        if (isClimbing)
         {
             climbInput = climbAction.ReadValue<Vector2>().y;
         }
 
+        // Set Animation
+        animator.SetFloat("Speed", Math.Abs(moveInput));
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
+        {
+            Flip();
+        }
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0 && facingRight)
+        {
+            Flip();
+        }
+
 
         // Check if grounded
-        CheckGrounded();
+            CheckGrounded();
         animator.SetBool("isGrounded", isGrounded);
 
         // Jump
@@ -108,6 +107,15 @@ public class PlayerController : MonoBehaviour
         // Better jump physics
         ApplyJumpPhysics();
     }
+    
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;  // invert the X scale
+        transform.localScale = scale;
+    }
 
     void CheckGrounded()
     {
@@ -128,7 +136,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         animator.SetBool("isGrounded", false);
-        animator.SetTrigger("Jump");
     }
 
     void ApplyJumpPhysics()

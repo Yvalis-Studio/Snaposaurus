@@ -872,6 +872,10 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 2077494338}
+    - target: {fileID: 3813251549020391645, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4204204137986602738, guid: db875ea5249170148b92bace06db64ae, type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
