@@ -872,6 +872,34 @@ PrefabInstance:
       propertyPath: footstepsSound
       value: 
       objectReference: {fileID: 2077494338}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_Name
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 04843f20-4566-4f82-8421-15638d1de2ee
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019414070019416144, guid: db875ea5249170148b92bace06db64ae, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact
+      objectReference: {fileID: 0}
     - target: {fileID: 3813251549020391645, guid: db875ea5249170148b92bace06db64ae, type: 3}
       propertyPath: m_SortingOrder
       value: 50
