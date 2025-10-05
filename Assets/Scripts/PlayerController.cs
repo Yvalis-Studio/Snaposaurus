@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,41 +22,65 @@ public class PlayerController : MonoBehaviour
     [Header("Input")]
     public InputAction moveAction;
     public InputAction jumpAction;
+    public InputAction climbAction;
+    public InputAction interactAction;
 
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private float moveInput;
+    [Header("Ladder")]
+    public bool isClimbing;
+
+    [Header("SoundEffects")]
+    public AudioSource footstepsSound;
+
+    Rigidbody2D rb;
+    bool isGrounded;
+    float moveInput;
+    float climbInput;
 
     Animator animator;
 
+    bool facingRight = true;
+
     void Start()
     {
+        GameManager.Instance.RestorePlayerPosition(gameObject);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         // Enable input actions
         moveAction.Enable();
         jumpAction.Enable();
+        climbAction.Enable();
+        interactAction.Enable();
     }
 
     void Update()
     {
-        // AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         // Get input
         moveInput = moveAction.ReadValue<Vector2>().x;
-        animator.SetFloat("Speed", Math.Abs(moveInput));
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
+        if (isClimbing)
         {
-            animator.SetBool("Right", true);
+            climbInput = climbAction.ReadValue<Vector2>().y;
+            animator.SetBool("IsClimbing", true);
         }
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
+        else
         {
-            animator.SetBool("Right", false);
+            animator.SetBool("IsClimbing", false);
         }
-        
+
+        // Set Animation
+            animator.SetFloat("Speed", Math.Abs(moveInput));
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
+        {
+            Flip();
+        }
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0 && facingRight)
+        {
+            Flip();
+        }
+
 
         // Check if grounded
-        CheckGrounded();
+            CheckGrounded();
         animator.SetBool("isGrounded", isGrounded);
 
         // Jump
@@ -62,15 +88,41 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        if (!Mathf.Approximately(moveInput, 0.0f) && isGrounded)
+        {
+            footstepsSound.enabled = true;
+        }
+        else
+        {
+            footstepsSound.enabled = false;
+        }
     }
 
     void FixedUpdate()
     {
-        // Horizontal movement
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        // Movement
+        if (!isClimbing)
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, climbInput * moveSpeed);
+        }
+
 
         // Better jump physics
         ApplyJumpPhysics();
+    }
+    
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;  // invert the X scale
+        transform.localScale = scale;
     }
 
     void CheckGrounded()
@@ -92,7 +144,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         animator.SetBool("isGrounded", false);
-        animator.SetTrigger("Jump");
     }
 
     void ApplyJumpPhysics()
