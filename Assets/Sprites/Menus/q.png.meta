@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 2491f05fbfca5344594d9971c97fbd1f
+guid: 5d53fe42b918a074abf435e8083dbce2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8482712648628362555
-    second: Cross_0
+      213: 4359327472603921858
+    second: q_0
+  - first:
+      213: 1420268961077868926
+    second: q_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cross_0
+      name: q_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 17
-        width: 324
-        height: 324
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3dd439e536a8b570800000000000000
-      internalID: 8482712648628362555
+      spriteID: 2cd78285d317f7c30800000000000000
+      internalID: 4359327472603921858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e793f8e581fc5b310800000000000000
+      internalID: 1420268961077868926
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 49f0c689b0daaa54490a90cfa79e339a
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +171,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Cross_0: 8482712648628362555
+      q_0: 4359327472603921858
+      q_1: 1420268961077868926
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
