@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     Animator animator;
 
+    bool facingRight = true;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,13 +50,13 @@ public class PlayerController : MonoBehaviour
         // Get input
         moveInput = moveAction.ReadValue<Vector2>().x;
         animator.SetFloat("Speed", Math.Abs(moveInput));
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0)
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
         {
-            animator.SetBool("Right", true);
+            Flip();
         }
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0)
+        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0 && facingRight)
         {
-            animator.SetBool("Right", false);
+            Flip();
         }
 
 
@@ -86,6 +88,15 @@ public class PlayerController : MonoBehaviour
         // Better jump physics
         ApplyJumpPhysics();
     }
+    
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;  // invert the X scale
+        transform.localScale = scale;
+    }
 
     void CheckGrounded()
     {
@@ -106,7 +117,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         animator.SetBool("isGrounded", false);
-        animator.SetTrigger("Jump");
     }
 
     void ApplyJumpPhysics()
