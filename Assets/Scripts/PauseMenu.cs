@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
 
-    public GameObject titlePanel;
+    public GameObject backToTheLobby;
 
 
     public static bool gameIsPaused = false;
@@ -106,13 +106,16 @@ public class PauseMenu : MonoBehaviour
             if (c != null) c.enabled = enabled;
     }
 
-    public void ShowTitle()
+    public void BackToTheLobby()
     {
-        Debug.Log("ShowTitle called");
-        if (titlePanel != null)
-            titlePanel.SetActive(true);
+        Debug.Log("BackToTheLobby called");
+        if (backToTheLobby != null)
+        {
+            SceneTransition.Instance.TransitionToScene("TitleScreen");
+            // UNPAUSE GAME
+        }
         else
-            Debug.LogError("titlePanel is null!");
+            Debug.LogError("BackToTheLobby is null!");
     }
 
 
