@@ -11,6 +11,7 @@ public class DinosaurQTE : MonoBehaviour
     public string dinoName = "T-Rex";
 
     [Header("Photo Sprites")]
+    public Sprite perfectPhoto; // Photo perfect si succès
     public Sprite clearPhoto; // Photo nette si succès
     public Sprite blurryPhoto; // Photo floue si échec
 
@@ -38,7 +39,7 @@ public class DinosaurQTE : MonoBehaviour
         if (qteManager != null && qteManager.isActive)
         {
             qteWasActive = true;
-            Debug.Log("QTE is active");
+            // Debug.Log("QTE is active");
         }
 
         // Check if QTE just finished
@@ -66,9 +67,26 @@ public class DinosaurQTE : MonoBehaviour
             return;
         }
 
+        Sprite photoToShow;
         // Choose photo based on QTE result
-        Sprite photoToShow = qteManager.isSuccess ? clearPhoto : blurryPhoto;
-        Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
+        if (qteManager.isSuccess)
+        {
+            if (qteManager.perfect)
+            {
+                photoToShow = perfectPhoto;
+            }
+            else
+            {
+                photoToShow = clearPhoto;
+            }
+        }
+        else
+        {
+            photoToShow = blurryPhoto;
+        }
+
+        // Sprite photoToShow = qteManager.isSuccess ? clearPhoto : blurryPhoto;
+            Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
 
         if (photoToShow != null)
         {

@@ -25,6 +25,7 @@ public class QTEManager : MonoBehaviour
     [Header("Result Display")]
     public Image failImage; // L'Image UI qui contient déjà ton sprite de fail
     public Image successImage; // L'Image UI qui contient ton sprite de succès
+    public Image perfectImage;
     public float resultDisplayDuration = 2f;
 
     // UI - Key Sprites
@@ -70,7 +71,7 @@ public class QTEManager : MonoBehaviour
     public bool isSuccess { get { return success; } }
     public bool success;
 
-    bool perfect = true;
+    public bool perfect = true;
 
     string[] possibleKeys = { "up", "down", "left", "right" };
     List<string> qteKeyList = new List<string>();
@@ -119,6 +120,10 @@ public class QTEManager : MonoBehaviour
         if (successImage != null)
         {
             successImage.gameObject.SetActive(false);
+        }
+        if (perfectImage != null)
+        {
+            perfectImage.gameObject.SetActive(false);
         }
 
         success = false;
@@ -187,6 +192,7 @@ public class QTEManager : MonoBehaviour
         Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
         qteActive = true;
         success = false;
+        perfect = true;
 
         GetNextKey();
 
@@ -357,16 +363,33 @@ public class QTEManager : MonoBehaviour
             timerBarSlider.gameObject.SetActive(false);
         }
 
-        // Show success image
-        if (successImage != null)
+        if (perfect)
         {
-            Debug.Log("Showing success image!");
-            successImage.gameObject.SetActive(true);
-            Invoke(nameof(HideResultImages), resultDisplayDuration);
+            // Show success image
+            if (perfectImage != null)
+            {
+                Debug.Log("Showing success image!");
+                perfectImage.gameObject.SetActive(true);
+                Invoke(nameof(HideResultImages), resultDisplayDuration);
+            }
+            else
+            {
+                Debug.LogWarning("Success image is NULL!");
+            }
         }
         else
         {
-            Debug.LogWarning("Success image is NULL!");
+            // Show success image
+            if (successImage != null)
+            {
+                Debug.Log("Showing success image!");
+                successImage.gameObject.SetActive(true);
+                Invoke(nameof(HideResultImages), resultDisplayDuration);
+            }
+            else
+            {
+                Debug.LogWarning("Success image is NULL!");
+            }
         }
 
         if (useTextDisplay && nextKeyText != null)
@@ -432,6 +455,10 @@ public class QTEManager : MonoBehaviour
         {
             successImage.gameObject.SetActive(false);
         }
+        if (perfectImage != null)
+        {
+            perfectImage.gameObject.SetActive(false);
+        }
         // nextKeyText.text = "Failed!";
         // GameManager.Instance.Dino1.score = 1;
         // SceneTransition.Instance.TransitionToScene("Level 1");
@@ -445,14 +472,15 @@ public class QTEManager : MonoBehaviour
 
     public void DoQTE(string key)
     {
-        if (qteActive)
+        if (key == qteNextKey)
         {
             // Show pressed sprite feedback and advance to next key
             StartCoroutine(DoQTESuccessCoroutine());
         }
-        else if (qteActive)
+        else
         {
             // Wrong key pressed - could add shake/red effect here later
+            perfect = false;
             ShowFailedFeedback();
         }
     }
