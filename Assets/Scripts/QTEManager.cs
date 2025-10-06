@@ -1,21 +1,64 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QTEManager : MonoBehaviour
 {
     // GameObject References
     public DinosaurQTE dinosaur;
 
-    // UI
+    // UI - Text
+    [Header("Text Display (Optional)")]
+    public bool useTextDisplay = true;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI nextKeyText;
+
+    [Header("Timer Bar")]
+    public Slider timerBarSlider;
+
+    [Header("Countdown Display")]
+    public TextMeshProUGUI countdownText;
+
+    [Header("Result Display")]
+    public Image failImage; // L'Image UI qui contient déjà ton sprite de fail
+    public Image successImage; // L'Image UI qui contient ton sprite de succès
+    public float resultDisplayDuration = 2f;
+
+    // UI - Key Sprites
+    [Header("Key Sprite Display")]
+    public Image[] keyDisplaySlots = new Image[3]; // 3 visible slots
+
+    [Header("Normal Key Sprites")]
+    public Sprite spriteUp;
+    public Sprite spriteDown;
+    public Sprite spriteLeft;
+    public Sprite spriteRight;
+
+    [Header("Pressed Key Sprites")]
+    public Sprite spriteUpPressed;
+    public Sprite spriteDownPressed;
+    public Sprite spriteLeftPressed;
+    public Sprite spriteRightPressed;
+
+    [Header("Key Display Settings")]
+    public float activeKeyScale = 1.2f;
+    public Color activeKeyColor = Color.white;
+    public Color queuedKeyColor = new Color(1f, 1f, 1f, 0.6f);
+    public float pressedDisplayDuration = 0.2f;
+
+    [Header("Success Effect Settings")]
+    public bool useSuccessEffect = true;
+    public QTESuccessHalo successHaloEffect;
+    public float successEffectDuration = 0.5f;
 
 
     // DBM PULL
     public float dbmPull = 3.0f;
     float dbmTimer;
+    bool showingGo = false;
 
     // QTE TIMER
     float timeLimit;
@@ -27,6 +70,8 @@ public class QTEManager : MonoBehaviour
     public bool isSuccess { get { return success; } }
     public bool success;
 
+    bool perfect = true;
+
     string[] possibleKeys = { "up", "down", "left", "right" };
     List<string> qteKeyList = new List<string>();
     string qteNextKey = "up";
@@ -34,21 +79,76 @@ public class QTEManager : MonoBehaviour
     void Start()
     {
         dbmTimer = dbmPull;
-        nextKeyText.text = $"{dbmTimer} s";
-        timerText.text = "Get Ready...";
+
+        if (useTextDisplay && nextKeyText != null)
+        {
+            nextKeyText.text = Mathf.CeilToInt(dbmTimer).ToString();
+        }
+        if (useTextDisplay && timerText != null)
+        {
+            timerText.text = "Get Ready...";
+        }
+
+        // Hide all key slots at start
+        foreach (var slot in keyDisplaySlots)
+        {
+            if (slot != null)
+            {
+                slot.gameObject.SetActive(false);
+            }
+        }
+
+        // Hide timer bar during countdown
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(false);
+        }
+
+        // Show countdown at start
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+            countdownText.text = Mathf.CeilToInt(dbmTimer).ToString();
+        }
+
+        // Hide result images at start
+        if (failImage != null)
+        {
+            failImage.gameObject.SetActive(false);
+        }
+        if (successImage != null)
+        {
+            successImage.gameObject.SetActive(false);
+        }
+
         success = false;
         qteActive = false;
     }
 
     void Update()
     {
-        // Prepull
-        if (dbmTimer > 0)
+        // Prepull countdown
+        if (!qteActive && dbmTimer > -0.5f)
         {
             dbmTimer -= Time.deltaTime;
-            nextKeyText.text = $"{dbmTimer.ToString("F2")} s";
 
-            if (dbmTimer <= 0)
+            // Update countdown display (independent of useTextDisplay)
+            if (countdownText != null)
+            {
+                int countdownNumber = Mathf.CeilToInt(dbmTimer);
+                if (countdownNumber > 0)
+                {
+                    countdownText.text = countdownNumber.ToString();
+                    showingGo = false;
+                }
+                else if (!showingGo)
+                {
+                    countdownText.text = "GO!";
+                    showingGo = true;
+                }
+            }
+
+            if (dbmTimer <= -0.5f) // Wait 0.5s after showing GO!
             {
                 StartQTE();
             }
@@ -58,7 +158,17 @@ public class QTEManager : MonoBehaviour
         if (qteActive)
         {
             timer -= Time.deltaTime;
-            timerText.text = $"Time left : {timer.ToString("F2")} s";
+
+            if (useTextDisplay && timerText != null)
+            {
+                timerText.text = $"Time left : {timer.ToString("F2")} s";
+            }
+
+            // Update timer bar (only when QTE is active)
+            if (timerBarSlider != null)
+            {
+                timerBarSlider.value = 1f - (timer / timeLimit); // Inverse: vide quand timer diminue
+            }
 
             if (timer <= 0f)
             {
@@ -69,16 +179,38 @@ public class QTEManager : MonoBehaviour
 
     public void StartQTE()
     {
+        Debug.Log("StartQTE called - qteActive = true");
         GenerateQTEKeyList(dinosaur.qteLength);
 
         timeLimit = dinosaur.qteTimer;
         timer = dinosaur.qteTimer;
+        Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
         qteActive = true;
         success = false;
 
         GetNextKey();
-        nextKeyText.gameObject.SetActive(true);
-        timerText.gameObject.SetActive(true);
+
+        if (useTextDisplay && nextKeyText != null)
+        {
+            nextKeyText.gameObject.SetActive(true);
+        }
+        if (useTextDisplay && timerText != null)
+        {
+            timerText.gameObject.SetActive(true);
+        }
+
+        // Show timer bar
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(true);
+            timerBarSlider.value = 0f; // Start vide (blanc)
+        }
+
+        // Hide countdown when QTE starts
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
     }
 
     void GenerateQTEKeyList(int length)
@@ -105,41 +237,333 @@ public class QTEManager : MonoBehaviour
 
     void UpdateKeyPreview()
     {
-        string previewText = qteNextKey;
-        if (qteKeyList.Count > 0)
+        // Update text (optional)
+        if (useTextDisplay && nextKeyText != null)
         {
-            previewText += $" - {qteKeyList[0]}";
+            string previewText = qteNextKey;
+            if (qteKeyList.Count > 0)
+            {
+                previewText += $" - {qteKeyList[0]}";
+            }
+            if (qteKeyList.Count > 1)
+            {
+                previewText += $" - {qteKeyList[1]}";
+            }
+            nextKeyText.text = previewText;
         }
-        if (qteKeyList.Count > 1)
+
+        // Update sprite displays
+        UpdateKeySpriteDisplay();
+    }
+
+    void UpdateKeySpriteDisplay()
+    {
+        // Build list of keys to display: current key + queued keys
+        List<string> keysToDisplay = new List<string> { qteNextKey };
+        keysToDisplay.AddRange(qteKeyList);
+
+        // Update each slot
+        for (int i = 0; i < keyDisplaySlots.Length; i++)
         {
-            previewText += $" - {qteKeyList[1]}";
+            if (keyDisplaySlots[i] == null) continue;
+
+            if (i < keysToDisplay.Count)
+            {
+                // Show key sprite
+                keyDisplaySlots[i].gameObject.SetActive(true);
+                keyDisplaySlots[i].sprite = GetSpriteForKey(keysToDisplay[i]);
+
+                // First key is active (larger, full opacity)
+                if (i == 0)
+                {
+                    keyDisplaySlots[i].transform.localScale = Vector3.one * activeKeyScale;
+                    keyDisplaySlots[i].color = activeKeyColor;
+                }
+                else
+                {
+                    // Queued keys are smaller and semi-transparent
+                    keyDisplaySlots[i].transform.localScale = Vector3.one;
+                    keyDisplaySlots[i].color = queuedKeyColor;
+                }
+            }
+            else
+            {
+                // Hide unused slots
+                keyDisplaySlots[i].gameObject.SetActive(false);
+            }
         }
-        nextKeyText.text = previewText;
+    }
+
+    Sprite GetSpriteForKey(string key, bool pressed = false)
+    {
+        if (pressed)
+        {
+            return key.ToLower() switch
+            {
+                "up" => spriteUpPressed,
+                "down" => spriteDownPressed,
+                "left" => spriteLeftPressed,
+                "right" => spriteRightPressed,
+                _ => null
+            };
+        }
+        else
+        {
+            return key.ToLower() switch
+            {
+                "up" => spriteUp,
+                "down" => spriteDown,
+                "left" => spriteLeft,
+                "right" => spriteRight,
+                _ => null
+            };
+        }
     }
 
     void QTESuccess()
     {
         success = true;
         qteActive = false;
-        nextKeyText.text = "Success!";
+
+        if (useTextDisplay && nextKeyText != null)
+        {
+            nextKeyText.text = "Success!";
+        }
         // Invoke(nameof(HidePrompt), 0.5f);
+        if (perfect)
+        {
+            GameManager.Instance.Dino1.score = 3;
+        }
+        else
+        {
+            GameManager.Instance.Dino1.score = 2;
+        }
+        // SceneTransition.Instance.TransitionToScene("Level 1");
+        Invoke(nameof(ExitQTE), 1.0f);
+    }
+
+    void QTESuccessComplete()
+    {
+        // Mark as success
+        success = true;
+        qteActive = false;
+
+        // Hide all key slots after brief delay
+        StartCoroutine(HideKeySlotsAfterDelay());
+
+        // Hide timer bar
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(false);
+        }
+
+        // Show success image
+        if (successImage != null)
+        {
+            Debug.Log("Showing success image!");
+            successImage.gameObject.SetActive(true);
+            Invoke(nameof(HideResultImages), resultDisplayDuration);
+        }
+        else
+        {
+            Debug.LogWarning("Success image is NULL!");
+        }
+
+        if (useTextDisplay && nextKeyText != null)
+        {
+            nextKeyText.text = "Success!";
+        }
+    }
+
+    IEnumerator HideKeySlotsAfterDelay()
+    {
+        // Wait for last halo effect to finish
+        yield return new WaitForSeconds(successEffectDuration);
+
+        // Hide all key slots
+        foreach (var slot in keyDisplaySlots)
+        {
+            if (slot != null)
+            {
+                slot.gameObject.SetActive(false);
+            }
+        }
     }
 
     void QTEFail()
     {
         qteActive = false;
-        nextKeyText.text = "Failed!";
-        // Invoke(nameof(HidePrompt), 0.5f);
+
+        if (useTextDisplay && nextKeyText != null)
+        {
+            nextKeyText.text = "Failed!";
+        }
+
+        // Hide timer bar
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(false);
+        }
+
+        // Hide key slots
+        foreach (var slot in keyDisplaySlots)
+        {
+            if (slot != null)
+            {
+                slot.gameObject.SetActive(false);
+            }
+        }
+
+        // Show fail image
+        if (failImage != null)
+        {
+            failImage.gameObject.SetActive(true);
+            Invoke(nameof(HideResultImages), resultDisplayDuration);
+        }
+    }
+
+    void HideResultImages()
+    {
+        if (failImage != null)
+        {
+            failImage.gameObject.SetActive(false);
+        }
+        if (successImage != null)
+        {
+            successImage.gameObject.SetActive(false);
+        }
+        // nextKeyText.text = "Failed!";
+        // GameManager.Instance.Dino1.score = 1;
+        // SceneTransition.Instance.TransitionToScene("Level 1");
+        Invoke(nameof(ExitQTE), 1.0f);
+    }
+
+    void ExitQTE()
+    {
+        SceneTransition.Instance.TransitionToScene("Level 1");
     }
 
     public void DoQTE(string key)
     {
-        if (qteActive && key == qteNextKey.ToLower())
+        if (qteActive)
         {
-            if (!GetNextKey())
+            // Show pressed sprite feedback and advance to next key
+            StartCoroutine(DoQTESuccessCoroutine());
+        }
+        else if (qteActive)
+        {
+            // Wrong key pressed - could add shake/red effect here later
+            ShowFailedFeedback();
+        }
+    }
+
+    IEnumerator DoQTESuccessCoroutine()
+    {
+        string currentKey = qteNextKey;
+
+        // Show pressed sprite
+        if (keyDisplaySlots.Length > 0 && keyDisplaySlots[0] != null)
+        {
+            keyDisplaySlots[0].sprite = GetSpriteForKey(currentKey, pressed: true);
+
+            // Spawn halo effect on successful key press
+            if (useSuccessEffect && successHaloEffect != null)
             {
-                QTESuccess();
+                successHaloEffect.SpawnHalo(keyDisplaySlots[0].transform);
             }
+        }
+
+        // Wait for feedback duration
+        yield return new WaitForSeconds(pressedDisplayDuration);
+
+        // Advance to next key
+        if (!GetNextKey())
+        {
+            // This was the last key - trigger success
+            QTESuccessComplete();
+        }
+    }
+
+    void ShowFailedFeedback()
+    {
+        // Placeholder for failed input feedback
+        // TODO: Add shake animation, red flash, or particle effect
+        Debug.Log("Wrong key pressed!");
+    }
+
+    /// <summary>
+    /// Stop the QTE completely
+    /// </summary>
+    public void StopQTE()
+    {
+        Debug.Log("Stopping QTE...");
+
+        qteActive = false;
+        success = false;
+
+        // Hide all UI elements
+        HideResultImages();
+
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(false);
+        }
+
+        foreach (var slot in keyDisplaySlots)
+        {
+            if (slot != null)
+            {
+                slot.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Restart the QTE from the beginning
+    /// </summary>
+    public void RestartQTE()
+    {
+        Debug.Log("Restarting QTE...");
+
+        // Reset timer
+        dbmTimer = dbmPull;
+        showingGo = false;
+
+        // Reset QTE state
+        success = false;
+        qteActive = false;
+
+        // Clear key list
+        qteKeyList.Clear();
+
+        // Hide result images
+        HideResultImages();
+
+        // Reset UI
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+            countdownText.text = Mathf.CeilToInt(dbmTimer).ToString();
+        }
+
+        // Hide key slots
+        foreach (var slot in keyDisplaySlots)
+        {
+            if (slot != null)
+            {
+                slot.gameObject.SetActive(false);
+            }
+        }
+
+        // Hide timer bar
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.gameObject.SetActive(false);
         }
     }
 }

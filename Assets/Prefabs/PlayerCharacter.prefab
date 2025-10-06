@@ -257,6 +257,23 @@ MonoBehaviour:
       m_Action: Climb
       m_Flags: 8
     m_Flags: 0
+  interactAction:
+    m_Name: Interact
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 30ac45f0-3fca-48b4-b6d1-423ffe6ecff2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 04843f20-4566-4f82-8421-15638d1de2ee
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interact
+      m_Flags: 0
+    m_Flags: 0
   isClimbing: 0
   footstepsSound: {fileID: 0}
 --- !u!95 &993258230411522035

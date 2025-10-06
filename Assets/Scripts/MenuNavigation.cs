@@ -61,7 +61,10 @@ public class MenuNavigation : MonoBehaviour
         Debug.Log("ShowLevelSelect called");
         HideAll();
         if (levelSelectPanel != null)
+        {
             levelSelectPanel.SetActive(true);
+            SceneTransition.Instance.TransitionToScene("Level 1");
+        }
         else
             Debug.LogError("levelSelectPanel is null!");
     }
