@@ -184,12 +184,12 @@ public class QTEManager : MonoBehaviour
 
     public void StartQTE()
     {
-        Debug.Log("StartQTE called - qteActive = true");
+        // Debug.Log("StartQTE called - qteActive = true");
         GenerateQTEKeyList(dinosaur.qteLength);
 
         timeLimit = dinosaur.qteTimer;
         timer = dinosaur.qteTimer;
-        Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
+        // Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
         qteActive = true;
         success = false;
         perfect = true;
@@ -368,7 +368,7 @@ public class QTEManager : MonoBehaviour
             // Show success image
             if (perfectImage != null)
             {
-                Debug.Log("Showing success image!");
+                // Debug.Log("Showing success image!");
                 perfectImage.gameObject.SetActive(true);
                 Invoke(nameof(HideResultImages), resultDisplayDuration);
             }
@@ -382,13 +382,13 @@ public class QTEManager : MonoBehaviour
             // Show success image
             if (successImage != null)
             {
-                Debug.Log("Showing success image!");
+                // Debug.Log("Showing success image!");
                 successImage.gameObject.SetActive(true);
                 Invoke(nameof(HideResultImages), resultDisplayDuration);
             }
             else
             {
-                Debug.LogWarning("Success image is NULL!");
+                // Debug.LogWarning("Success image is NULL!");
             }
         }
 
@@ -516,7 +516,7 @@ public class QTEManager : MonoBehaviour
     {
         // Placeholder for failed input feedback
         // TODO: Add shake animation, red flash, or particle effect
-        Debug.Log("Wrong key pressed!");
+        // Debug.Log("Wrong key pressed!");
     }
 
     /// <summary>
@@ -524,7 +524,7 @@ public class QTEManager : MonoBehaviour
     /// </summary>
     public void StopQTE()
     {
-        Debug.Log("Stopping QTE...");
+        // Debug.Log("Stopping QTE...");
 
         qteActive = false;
         success = false;
@@ -556,7 +556,7 @@ public class QTEManager : MonoBehaviour
     /// </summary>
     public void RestartQTE()
     {
-        Debug.Log("Restarting QTE...");
+        // Debug.Log("Restarting QTE...");
 
         // Reset timer
         dbmTimer = dbmPull;

@@ -26,6 +26,8 @@ public class DinosaurQTE : MonoBehaviour
     private bool photoShown = false;
     private bool qteWasActive = false;
 
+    public PhotoManager photoManager;
+
     void Start()
     {
         // Reset states at start
@@ -45,7 +47,7 @@ public class DinosaurQTE : MonoBehaviour
         // Check if QTE just finished
         if (qteManager != null && !qteManager.isActive && qteWasActive && !photoShown)
         {
-            Debug.Log("QTE finished! Showing photo in " + photoDisplayDelay + "s");
+            // Debug.Log("QTE finished! Showing photo in " + photoDisplayDelay + "s");
             photoShown = true;
             StartCoroutine(ShowPhotoAfterDelay());
         }
@@ -59,13 +61,7 @@ public class DinosaurQTE : MonoBehaviour
 
     void ShowPhoto()
     {
-        Debug.Log($"ShowPhoto called - Success: {qteManager.isSuccess}");
-
-        if (PhotoManager.Instance == null)
-        {
-            Debug.LogError("PhotoManager not found in scene!");
-            return;
-        }
+        // Debug.Log($"ShowPhoto called - Success: {qteManager.isSuccess}");
 
         Sprite photoToShow;
         // Choose photo based on QTE result
@@ -86,35 +82,35 @@ public class DinosaurQTE : MonoBehaviour
         }
 
         // Sprite photoToShow = qteManager.isSuccess ? clearPhoto : blurryPhoto;
-            Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
+            // Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
 
         if (photoToShow != null)
         {
             // Show and save the photo
-            Debug.Log("Calling PhotoManager.ShowAndSavePhoto...");
-            PhotoManager.Instance.ShowAndSavePhoto(dinoName, photoToShow, qteManager.isSuccess);
+            // Debug.Log("Calling PhotoManager.ShowAndSavePhoto...");
+            photoManager.ShowAndSavePhoto(dinoName, photoToShow, qteManager.isSuccess);
         }
         else
         {
-            Debug.LogWarning($"No photo sprite assigned for {(qteManager.isSuccess ? "success" : "failure")}");
+            // Debug.LogWarning($"No photo sprite assigned for {(qteManager.isSuccess ? "success" : "failure")}");
         }
 
         // Schedule retry only if failed and autoRetry enabled
         if (autoRetry && !qteManager.isSuccess)
         {
-            Debug.Log($"QTE Failed - Retrying in {retryDelay} seconds");
+            // Debug.Log($"QTE Failed - Retrying in {retryDelay} seconds");
             Invoke(nameof(RetryQTE), retryDelay);
         }
         else if (qteManager.isSuccess)
         {
-            Debug.Log("QTE Success! Stopping QTE system - No retry.");
+            // Debug.Log("QTE Success! Stopping QTE system - No retry.");
             // Don't invoke retry, QTE stops here
         }
     }
 
     void RetryQTE()
     {
-        Debug.Log("Retrying QTE...");
+        // Debug.Log("Retrying QTE...");
 
         // Reset states
         photoShown = false;

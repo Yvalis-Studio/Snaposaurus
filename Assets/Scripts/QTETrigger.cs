@@ -1,15 +1,14 @@
-using UnityEditor;
 using UnityEngine;
 
 public class QTETrigger : MonoBehaviour
 {
-    public SceneAsset targetScene;
+    public string targetScene;
 
     bool playerInRange = false;
     PlayerController player;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && GameManager.Instance.Dino1.isActive)
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
             player = other.GetComponent<PlayerController>();
@@ -34,10 +33,9 @@ public class QTETrigger : MonoBehaviour
             {
                 // Save current position before leaving overworld
                 GameManager.Instance.SavePlayerPosition(player.transform.position);
-                GameManager.Instance.Dino1.isActive = false;
 
                 // Begin transition
-                SceneTransition.Instance.TransitionToScene(targetScene.name);
+                SceneTransition.Instance.TransitionToScene(targetScene);
             }
         }
     }
