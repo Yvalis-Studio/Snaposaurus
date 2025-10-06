@@ -2,17 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Canvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Camera
   - 
   - 
   - 
@@ -41,3 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1838206145
+    locked: 0
+  - name: UI
+    uniqueID: 1452220135
+    locked: 0
+  m_RenderingLayers:
+  - Default
