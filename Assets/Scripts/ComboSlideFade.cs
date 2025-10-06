@@ -47,10 +47,10 @@ public class PanelTransition : MonoBehaviour
         
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime; // Utilise unscaledDeltaTime pour que ça marche en pause
             float t = elapsed / duration;
             t = 1 - Mathf.Pow(1 - t, 2); // Ease out
-            
+
             canvasGroup.alpha = t;
             rectTransform.anchoredPosition = Vector2.Lerp(originalPosition + slideOffset, originalPosition, t);
             yield return null;
