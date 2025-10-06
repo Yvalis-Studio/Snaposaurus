@@ -151,8 +151,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 556145512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -479,7 +479,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 1334649113497327279, guid: 7921bc44c4519074684f12851bfb7363, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -546,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &200427449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ Canvas:
   m_GameObject: {fileID: 200427448}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -634,6 +634,7 @@ RectTransform:
   - {fileID: 484455429}
   - {fileID: 616115434}
   - {fileID: 739310043}
+  - {fileID: 206055788}
   - {fileID: 1819010690}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,6 +643,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &206055787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206055788}
+  - component: {fileID: 206055790}
+  - component: {fileID: 206055789}
+  m_Layer: 5
+  m_Name: Perfect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &206055788
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206055787}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13052598, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 200427452}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -208.4544, y: 37.900757}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &206055789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206055787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 33dd2674822fcb04e9838242e3a4e1bb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &206055790
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206055787}
+  m_CullTransparentMesh: 1
 --- !u!1 &287404826
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,8 +989,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8030353362188112839, guid: 2045af4fb14a2614284cd9f762781641, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 8030353362188112839, guid: 2045af4fb14a2614284cd9f762781641, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8546767367127338867, guid: 2045af4fb14a2614284cd9f762781641, type: 3}
       propertyPath: m_LocalPosition.z
@@ -997,8 +1077,8 @@ Canvas:
   m_GameObject: {fileID: 439385544}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1268,7 +1348,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1791,7 +1871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 33dd2674822fcb04e9838242e3a4e1bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65452e2001970e647aeb87d3c62f5319, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1847,6 +1927,7 @@ MonoBehaviour:
   countdownText: {fileID: 484455430}
   failImage: {fileID: 616115435}
   successImage: {fileID: 739310044}
+  perfectImage: {fileID: 206055789}
   resultDisplayDuration: 4
   keyDisplaySlots:
   - {fileID: 1051775473}
@@ -1869,6 +1950,7 @@ MonoBehaviour:
   successEffectDuration: 0.5
   dbmPull: 3
   success: 0
+  perfect: 1
 --- !u!4 &851164213
 Transform:
   m_ObjectHideFlags: 0
@@ -2491,8 +2573,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1006910052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3047,12 +3129,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
   qteTimer: 5
   qteLength: 3
-  dinoName: T-Rex
-  clearPhoto: {fileID: 3206288760120457463, guid: a444719934ad36846b4c53624e6fc42d, type: 3}
-  blurryPhoto: {fileID: 5815138429892859216, guid: 2967769f8b20402408f3aaf3dd7cf046, type: 3}
+  dinoName: Brachiosaurus
+  perfectPhoto: {fileID: 8456519085132034961, guid: c12a53114cbb3cb48baa1fd559375325, type: 3}
+  clearPhoto: {fileID: -7686102315440524808, guid: bbce105e7b0ee834b8e5ca54c9dd0547, type: 3}
+  blurryPhoto: {fileID: -7401154631300024416, guid: 783fa62ceb9a5144ebe09ad2f107e0b5, type: 3}
   qteManager: {fileID: 851164212}
   photoDisplayDelay: 1.5
-  autoRetry: 1
+  autoRetry: 0
   retryDelay: 4
   isActive: 1
   score: 0
@@ -3102,7 +3185,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 8271553017241889795, guid: 2d300394f0d07d746ad677003bd6b061, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
