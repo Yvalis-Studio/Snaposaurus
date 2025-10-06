@@ -112,7 +112,9 @@ public class PauseMenu : MonoBehaviour
         if (backToTheLobby != null)
         {
             SceneTransition.Instance.TransitionToScene("TitleScreen");
-            // UNPAUSE GAME
+            HideUIImmediate();
+            Time.timeScale = 1f;
+            gameIsPaused = false;
         }
         else
             Debug.LogError("BackToTheLobby is null!");

@@ -81,8 +81,25 @@ public class MenuArrowSelector : MonoBehaviour
             }
             else
             {
-                // Fallback si pas de texte trouvé
-                Vector2 targetPos = currentTarget.anchoredPosition + new Vector2(-margin, 0);
+                // Fallback pour images - utilise la largeur réelle de l'image
+                float imageWidth = currentTarget.rect.width * currentTarget.lossyScale.x / arrow.lossyScale.x;
+                Vector2 offset = alignLeft
+                    ? new Vector2(-(imageWidth / 2 + margin), 0)
+                    : new Vector2(imageWidth / 2 + margin, 0);
+
+                // Position de l'image en world space
+                Vector3 imageWorldPos = currentTarget.position;
+
+                // Convertit en position locale du panel
+                Vector2 imageLocalPos;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    transform as RectTransform,
+                    RectTransformUtility.WorldToScreenPoint(null, imageWorldPos),
+                    null,
+                    out imageLocalPos
+                );
+
+                Vector2 targetPos = imageLocalPos + offset;
                 arrow.anchoredPosition = Vector2.Lerp(arrow.anchoredPosition, targetPos, Time.deltaTime * moveSpeed);
             }
 

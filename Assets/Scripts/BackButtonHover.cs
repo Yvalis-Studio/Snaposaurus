@@ -93,6 +93,8 @@ public class BackButtonHoverAnimation : MonoBehaviour, IPointerEnterHandler, IPo
         {
             "z" => keyboard.zKey.isPressed,
             "q" => keyboard.qKey.isPressed,
+            "w" => keyboard.wKey.isPressed,
+            "a" => keyboard.aKey.isPressed,
             "s" => keyboard.sKey.isPressed,
             "d" => keyboard.dKey.isPressed,
             "esc" or "escape" => keyboard.escapeKey.isPressed,
