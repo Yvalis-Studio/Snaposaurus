@@ -62,7 +62,7 @@ public class MenuNavigation : MonoBehaviour
         HideAll();
         if (levelSelectPanel != null)
         {
-            levelSelectPanel.SetActive(true);
+            // levelSelectPanel.SetActive(true);
             SceneTransition.Instance.TransitionToScene("Level 1");
         }
         else
