@@ -109,7 +109,6 @@ public class PauseMenu : MonoBehaviour
     public void ShowTitle()
     {
         Debug.Log("ShowTitle called");
-        HideAll();
         if (titlePanel != null)
             titlePanel.SetActive(true);
         else
