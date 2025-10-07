@@ -37,7 +37,7 @@ public class MenuArrowSelector : MonoBehaviour
         // Gère le délai d'activation
         if (!isActive)
         {
-            delayTimer -= Time.deltaTime;
+            delayTimer -= Time.unscaledDeltaTime;
             if (delayTimer <= 0f)
             {
                 isActive = true;
@@ -77,7 +77,7 @@ public class MenuArrowSelector : MonoBehaviour
                     : new Vector2(textWidth / 2 + margin, 0);
 
                 Vector2 targetPos = textLocalPos + offset;
-                arrow.anchoredPosition = Vector2.Lerp(arrow.anchoredPosition, targetPos, Time.deltaTime * moveSpeed);
+                arrow.anchoredPosition = Vector2.Lerp(arrow.anchoredPosition, targetPos, Time.unscaledDeltaTime * moveSpeed);
             }
             else
             {
@@ -100,14 +100,14 @@ public class MenuArrowSelector : MonoBehaviour
                 );
 
                 Vector2 targetPos = imageLocalPos + offset;
-                arrow.anchoredPosition = Vector2.Lerp(arrow.anchoredPosition, targetPos, Time.deltaTime * moveSpeed);
+                arrow.anchoredPosition = Vector2.Lerp(arrow.anchoredPosition, targetPos, Time.unscaledDeltaTime * moveSpeed);
             }
 
-            arrowCanvas.alpha = Mathf.Lerp(arrowCanvas.alpha, 1f, Time.deltaTime * moveSpeed);
+            arrowCanvas.alpha = Mathf.Lerp(arrowCanvas.alpha, 1f, Time.unscaledDeltaTime * moveSpeed);
         }
         else
         {
-            arrowCanvas.alpha = Mathf.Lerp(arrowCanvas.alpha, 0f, Time.deltaTime * moveSpeed);
+            arrowCanvas.alpha = Mathf.Lerp(arrowCanvas.alpha, 0f, Time.unscaledDeltaTime * moveSpeed);
         }
     }
     

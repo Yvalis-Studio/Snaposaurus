@@ -144,54 +144,54 @@ public class BackButtonHoverAnimation : MonoBehaviour, IPointerEnterHandler, IPo
     {
         // Scale
         Vector3 targetScale = isHovering ? originalScale * hoverScale : originalScale;
-        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * animationSpeed);
-        
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.unscaledDeltaTime * animationSpeed);
+
         // Rotation
         float targetRotation = isHovering ? 90f : 0f;
         Quaternion target = originalRotation * Quaternion.Euler(0, 0, targetRotation);
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, target, Time.deltaTime * animationSpeed);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, target, Time.unscaledDeltaTime * animationSpeed);
     }
     
     void AnimatePulse()
     {
         if (isHovering)
         {
-            float pulse = 1f + Mathf.Sin(Time.time * animationSpeed) * 0.1f;
+            float pulse = 1f + Mathf.Sin(Time.unscaledTime * animationSpeed) * 0.1f;
             transform.localScale = originalScale * pulse * hoverScale;
         }
         else
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.unscaledDeltaTime * animationSpeed);
         }
     }
-    
+
     void AnimateShake()
     {
         if (isHovering)
         {
             float shakeAmount = 5f;
-            float shake = Mathf.Sin(Time.time * animationSpeed * 5) * shakeAmount;
+            float shake = Mathf.Sin(Time.unscaledTime * animationSpeed * 5) * shakeAmount;
             transform.localRotation = originalRotation * Quaternion.Euler(0, 0, shake);
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale * hoverScale, Time.deltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale * hoverScale, Time.unscaledDeltaTime * animationSpeed);
         }
         else
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * animationSpeed);
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime * animationSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.unscaledDeltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.unscaledDeltaTime * animationSpeed);
         }
     }
-    
+
     void AnimateRotateContinuous()
     {
         if (isHovering)
         {
-            transform.Rotate(0, 0, animationSpeed * 100 * Time.deltaTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale * hoverScale, Time.deltaTime * animationSpeed);
+            transform.Rotate(0, 0, animationSpeed * 100 * Time.unscaledDeltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale * hoverScale, Time.unscaledDeltaTime * animationSpeed);
         }
         else
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.deltaTime * animationSpeed);
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.deltaTime * animationSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, originalRotation, Time.unscaledDeltaTime * animationSpeed);
+            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, Time.unscaledDeltaTime * animationSpeed);
         }
     }
     

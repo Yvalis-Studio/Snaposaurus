@@ -30,4 +30,9 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = playerPosition;
     }
+
+    public bool IsGamePaused()
+    {
+        return MenuNavigation.Instance != null && Time.timeScale == 0f;
+    }
 }

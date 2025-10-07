@@ -48,7 +48,7 @@ public class SceneTransition : MonoBehaviour
 
         while (timer < fadeDuration)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             color.a = Mathf.Lerp(startAlpha, targetAlpha, timer / fadeDuration);
             fadeImage.color = color;
             yield return null;
