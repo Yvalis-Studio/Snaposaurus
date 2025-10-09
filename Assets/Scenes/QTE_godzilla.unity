@@ -363,74 +363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1589accf8fe3b14eac5da4fbb1ae97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerQTE
-  up:
-    m_Name: Up
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e3694a2d-543f-4d41-a369-37ac09d987c7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2b171284-1688-49a2-b42d-e8cbd298a71a
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Up
-      m_Flags: 0
-    m_Flags: 0
-  down:
-    m_Name: Down
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 01af100c-10ce-4cea-883e-0b02a48e8896
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 9208cc8a-af59-49ae-bc06-b0f49d3c2101
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Down
-      m_Flags: 0
-    m_Flags: 0
-  left:
-    m_Name: Left
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ee8c0d0e-fa18-4b4c-8308-376acc927917
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 02339017-eafc-469a-ae11-1705680eec01
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Left
-      m_Flags: 0
-    m_Flags: 0
-  right:
-    m_Name: Right
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 85ffd4a4-3dd2-48c3-9695-8299dee5ca0f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: aa2c9fec-7596-4fd7-895a-d2a35a516ca3
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Right
-      m_Flags: 0
-    m_Flags: 0
   qteManager: {fileID: 851164212}
 --- !u!212 &184857017
 SpriteRenderer:
@@ -676,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.4544, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206055789
@@ -1581,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.4544, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616115435
@@ -1904,7 +1836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.4544, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739310044
@@ -1989,14 +1921,22 @@ MonoBehaviour:
   - {fileID: 1051775473}
   - {fileID: 1090574410}
   - {fileID: 287404829}
-  spriteUp: {fileID: -2256291859449093197, guid: 36f2d44fd0bf31c41b0e6e7accb959e8, type: 3}
-  spriteDown: {fileID: 1532440346177022758, guid: 065bbcc7f13fca04abcf1a7f4319352e, type: 3}
-  spriteLeft: {fileID: 4359327472603921858, guid: 832da05fdb587094eb1b4f1d8487890c, type: 3}
-  spriteRight: {fileID: 2957404852419100943, guid: c0ea3a8ae4894a44d9c7d66f9c341464, type: 3}
-  spriteUpPressed: {fileID: -1987830447329108927, guid: 066640da731f8e644a7028192615ae11, type: 3}
-  spriteDownPressed: {fileID: 4837994805361116707, guid: 7a2914d1eeadf1240a45e36aff860215, type: 3}
-  spriteLeftPressed: {fileID: 1420268961077868926, guid: 5d53fe42b918a074abf435e8083dbce2, type: 3}
-  spriteRightPressed: {fileID: 5351216537501832570, guid: 3d63c25e5d64c1c4ab0eecad47433c0a, type: 3}
+  spriteUpQwerty: {fileID: 0}
+  spriteDownQwerty: {fileID: 0}
+  spriteLeftQwerty: {fileID: 0}
+  spriteRightQwerty: {fileID: 0}
+  spriteUpPressedQwerty: {fileID: 0}
+  spriteDownPressedQwerty: {fileID: 0}
+  spriteLeftPressedQwerty: {fileID: 0}
+  spriteRightPressedQwerty: {fileID: 0}
+  spriteUpAzerty: {fileID: 0}
+  spriteDownAzerty: {fileID: 0}
+  spriteLeftAzerty: {fileID: 0}
+  spriteRightAzerty: {fileID: 0}
+  spriteUpPressedAzerty: {fileID: 0}
+  spriteDownPressedAzerty: {fileID: 0}
+  spriteLeftPressedAzerty: {fileID: 0}
+  spriteRightPressedAzerty: {fileID: 0}
   activeKeyScale: 1.2
   activeKeyColor: {r: 1, g: 1, b: 1, a: 1}
   queuedKeyColor: {r: 1, g: 1, b: 1, a: 0.6}
@@ -2264,85 +2204,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &985881777
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 985881780}
-  - component: {fileID: 985881779}
-  - component: {fileID: 985881778}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &985881778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985881777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
-  m_ScrollDeltaPerTick: 6
---- !u!114 &985881779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985881777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &985881780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 985881777}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5200005, y: 16.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &987887842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,7 +3136,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 985881780}
   - {fileID: 851164213}
   - {fileID: 439251836}
   - {fileID: 200427452}
