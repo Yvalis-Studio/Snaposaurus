@@ -32,17 +32,29 @@ public class QTEManager : MonoBehaviour
     [Header("Key Sprite Display")]
     public Image[] keyDisplaySlots = new Image[3]; // 3 visible slots
 
-    [Header("Normal Key Sprites")]
-    public Sprite spriteUp;
-    public Sprite spriteDown;
-    public Sprite spriteLeft;
-    public Sprite spriteRight;
+    [Header("QWERTY Key Sprites")]
+    public Sprite spriteUpQwerty;      // W key
+    public Sprite spriteDownQwerty;    // S key
+    public Sprite spriteLeftQwerty;    // A key
+    public Sprite spriteRightQwerty;   // D key
 
-    [Header("Pressed Key Sprites")]
-    public Sprite spriteUpPressed;
-    public Sprite spriteDownPressed;
-    public Sprite spriteLeftPressed;
-    public Sprite spriteRightPressed;
+    [Header("QWERTY Pressed Key Sprites")]
+    public Sprite spriteUpPressedQwerty;
+    public Sprite spriteDownPressedQwerty;
+    public Sprite spriteLeftPressedQwerty;
+    public Sprite spriteRightPressedQwerty;
+
+    [Header("AZERTY Key Sprites")]
+    public Sprite spriteUpAzerty;      // Z key
+    public Sprite spriteDownAzerty;    // S key
+    public Sprite spriteLeftAzerty;    // Q key
+    public Sprite spriteRightAzerty;   // D key
+
+    [Header("AZERTY Pressed Key Sprites")]
+    public Sprite spriteUpPressedAzerty;
+    public Sprite spriteDownPressedAzerty;
+    public Sprite spriteLeftPressedAzerty;
+    public Sprite spriteRightPressedAzerty;
 
     [Header("Key Display Settings")]
     public float activeKeyScale = 1.2f;
@@ -302,27 +314,59 @@ public class QTEManager : MonoBehaviour
 
     Sprite GetSpriteForKey(string key, bool pressed = false)
     {
+        // Determine current keyboard layout
+        bool isQwerty = InputManager.Instance == null ||
+                        InputManager.Instance.currentLayout == InputManager.KeyboardLayout.QWERTY;
+
         if (pressed)
         {
-            return key.ToLower() switch
+            if (isQwerty)
             {
-                "up" => spriteUpPressed,
-                "down" => spriteDownPressed,
-                "left" => spriteLeftPressed,
-                "right" => spriteRightPressed,
-                _ => null
-            };
+                return key.ToLower() switch
+                {
+                    "up" => spriteUpPressedQwerty,
+                    "down" => spriteDownPressedQwerty,
+                    "left" => spriteLeftPressedQwerty,
+                    "right" => spriteRightPressedQwerty,
+                    _ => null
+                };
+            }
+            else // AZERTY
+            {
+                return key.ToLower() switch
+                {
+                    "up" => spriteUpPressedAzerty,
+                    "down" => spriteDownPressedAzerty,
+                    "left" => spriteLeftPressedAzerty,
+                    "right" => spriteRightPressedAzerty,
+                    _ => null
+                };
+            }
         }
         else
         {
-            return key.ToLower() switch
+            if (isQwerty)
             {
-                "up" => spriteUp,
-                "down" => spriteDown,
-                "left" => spriteLeft,
-                "right" => spriteRight,
-                _ => null
-            };
+                return key.ToLower() switch
+                {
+                    "up" => spriteUpQwerty,
+                    "down" => spriteDownQwerty,
+                    "left" => spriteLeftQwerty,
+                    "right" => spriteRightQwerty,
+                    _ => null
+                };
+            }
+            else // AZERTY
+            {
+                return key.ToLower() switch
+                {
+                    "up" => spriteUpAzerty,
+                    "down" => spriteDownAzerty,
+                    "left" => spriteLeftAzerty,
+                    "right" => spriteRightAzerty,
+                    _ => null
+                };
+            }
         }
     }
 
@@ -492,7 +536,9 @@ public class QTEManager : MonoBehaviour
         // Show pressed sprite
         if (keyDisplaySlots.Length > 0 && keyDisplaySlots[0] != null)
         {
-            keyDisplaySlots[0].sprite = GetSpriteForKey(currentKey, pressed: true);
+            Sprite pressedSprite = GetSpriteForKey(currentKey, pressed: true);
+            Debug.Log($"[QTE] Showing pressed sprite for '{currentKey}' - Sprite: {(pressedSprite != null ? pressedSprite.name : "NULL")}");
+            keyDisplaySlots[0].sprite = pressedSprite;
 
             // Spawn halo effect on successful key press
             if (useSuccessEffect && successHaloEffect != null)
@@ -593,5 +639,15 @@ public class QTEManager : MonoBehaviour
         {
             timerBarSlider.gameObject.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// Refresh key sprites when keyboard layout changes
+    /// Called by InputManager when layout is switched
+    /// </summary>
+    public void RefreshKeySprites()
+    {
+        // Update the sprite display to use new layout sprites
+        UpdateKeySpriteDisplay();
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MenuNavigation : MonoBehaviour
 {
@@ -66,8 +66,12 @@ public class MenuNavigation : MonoBehaviour
 
     void Update()
     {
-        // ESC pour pause/unpause en jeu
-        if (isInGame && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        // ESC pour pause/unpause en jeu (using new Input System)
+        #if UNITY_EDITOR
+        if (isInGame && UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
+        #else
+        if (isInGame && InputManager.Instance != null && InputManager.Instance.PauseAction.WasPressedThisFrame())
+        #endif
         {
             if (gameIsPaused)
                 Resume();

@@ -19,11 +19,8 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    [Header("Input")]
-    public InputAction moveAction;
-    public InputAction jumpAction;
-    public InputAction climbAction;
-    public InputAction interactAction;
+    // Input actions are now managed by InputManager
+    // No need for individual InputAction references
 
     [Header("Ladder")]
     public bool isClimbing;
@@ -46,20 +43,18 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        // Enable input actions
-        moveAction.Enable();
-        jumpAction.Enable();
-        climbAction.Enable();
-        interactAction.Enable();
+        // Input is now managed by InputManager - no manual enabling needed
     }
 
     void Update()
     {
-        // Get input
-        moveInput = moveAction.ReadValue<Vector2>().x;
+        if (InputManager.Instance == null) return;
+
+        // Get input from InputManager
+        moveInput = InputManager.Instance.MoveAction.ReadValue<Vector2>().x;
         if (isClimbing)
         {
-            climbInput = climbAction.ReadValue<Vector2>().y;
+            climbInput = InputManager.Instance.MoveAction.ReadValue<Vector2>().y;
             animator.SetBool("IsClimbing", true);
         }
         else
@@ -68,7 +63,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Set Animation
-            animator.SetFloat("Speed", Math.Abs(moveInput));
+        animator.SetFloat("Speed", Math.Abs(moveInput));
         if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
         {
             Flip();
@@ -78,13 +73,12 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-
         // Check if grounded
-            CheckGrounded();
+        CheckGrounded();
         animator.SetBool("isGrounded", isGrounded);
 
         // Jump
-        if (jumpAction.WasPressedThisFrame() && isGrounded)
+        if (InputManager.Instance.JumpAction.WasPressedThisFrame() && isGrounded)
         {
             Jump();
         }
@@ -148,13 +142,15 @@ public class PlayerController : MonoBehaviour
 
     void ApplyJumpPhysics()
     {
+        if (InputManager.Instance == null) return;
+
         // Fall faster than rise
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         // Variable jump height - let go of jump to fall sooner
-        else if (rb.linearVelocity.y > 0 && !jumpAction.IsPressed())
+        else if (rb.linearVelocity.y > 0 && !InputManager.Instance.JumpAction.IsPressed())
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }

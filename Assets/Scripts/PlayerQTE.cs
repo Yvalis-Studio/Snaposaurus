@@ -1,55 +1,43 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerQTE : MonoBehaviour
 {
-    public InputAction up;
-    public InputAction down;
-    public InputAction left;
-    public InputAction right;
-
     public QTEManager qteManager;
 
     // ANIM
     Animator animator;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        up.Enable();
-        down.Enable();
-        left.Enable();
-        right.Enable();
+        // Input is now managed by InputManager - no manual enabling needed
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (qteManager.isActive)
-        {
-            if (up.WasPressedThisFrame())
-            {
-                qteManager.DoQTE("up");
-            }
-            if (down.WasPressedThisFrame())
-            {
-                qteManager.DoQTE("down");
-            }
-            if (left.WasPressedThisFrame())
-            {
-                qteManager.DoQTE("left");
-            }
-            if (right.WasPressedThisFrame())
-            {
-                qteManager.DoQTE("right");
-            }
+        if (InputManager.Instance == null || !qteManager.isActive) return;
 
-            if (qteManager.isSuccess)
-            {
-                animator.SetTrigger("Success");
-            }
+        // Check directional inputs using InputManager
+        if (InputManager.Instance.WasDirectionPressedThisFrame("up"))
+        {
+            qteManager.DoQTE("up");
+        }
+        else if (InputManager.Instance.WasDirectionPressedThisFrame("down"))
+        {
+            qteManager.DoQTE("down");
+        }
+        else if (InputManager.Instance.WasDirectionPressedThisFrame("left"))
+        {
+            qteManager.DoQTE("left");
+        }
+        else if (InputManager.Instance.WasDirectionPressedThisFrame("right"))
+        {
+            qteManager.DoQTE("right");
+        }
+
+        if (qteManager.isSuccess)
+        {
+            animator.SetTrigger("Success");
         }
     }
 }

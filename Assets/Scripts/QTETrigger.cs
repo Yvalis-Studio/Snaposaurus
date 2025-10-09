@@ -28,7 +28,9 @@ public class QTETrigger : MonoBehaviour
     {
         if (playerInRange)
         {
-            bool playerInteracting = player.interactAction.WasPressedThisFrame();
+            bool playerInteracting = InputManager.Instance != null &&
+                                     InputManager.Instance.InteractAction.WasPressedThisFrame();
+
             if (playerInteracting)
             {
                 // Save current position before leaving overworld
