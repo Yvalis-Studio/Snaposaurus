@@ -156,9 +156,10 @@ public class MenuNavigation : MonoBehaviour
     public void ShowLevelSelect()
     {
         HideAll();
+        HideCanvasUI(); // Désactive le canvas du menu
         if (levelSelectPanel != null)
         {
-            SceneTransition.Instance.TransitionToScene("Level 1");
+            SceneTransition.Instance.TransitionToScene("IntroCinematic");
         }
     }
 
@@ -264,7 +265,7 @@ public class MenuNavigation : MonoBehaviour
         }
     }
 
-    private void HideCanvasUI()
+    public void HideCanvasUI()
     {
         if (canvasGroup != null)
         {
