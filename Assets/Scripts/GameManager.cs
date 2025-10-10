@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     public DinosaurQTE Dino1;
     public Vector3 playerPosition;
 
+    [Header("Difficulty Settings")]
+    [SerializeField]
+    private DifficultySettings.DifficultyLevel gameDifficulty = DifficultySettings.DifficultyLevel.Easy;
+
     void Awake()
     {
         if (Instance == null)
@@ -14,6 +18,12 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             Dino1.isActive = true;
+
+            // Set difficulty in DifficultySettings if it exists
+            if (DifficultySettings.Instance != null)
+            {
+                DifficultySettings.Instance.SetDifficulty(gameDifficulty);
+            }
         }
         else
         {
@@ -34,5 +44,25 @@ public class GameManager : MonoBehaviour
     public bool IsGamePaused()
     {
         return MenuNavigation.Instance != null && Time.timeScale == 0f;
+    }
+
+    /// <summary>
+    /// Set the game difficulty level
+    /// </summary>
+    public void SetDifficulty(DifficultySettings.DifficultyLevel difficulty)
+    {
+        gameDifficulty = difficulty;
+        if (DifficultySettings.Instance != null)
+        {
+            DifficultySettings.Instance.SetDifficulty(difficulty);
+        }
+    }
+
+    /// <summary>
+    /// Get the current game difficulty level
+    /// </summary>
+    public DifficultySettings.DifficultyLevel GetDifficulty()
+    {
+        return gameDifficulty;
     }
 }

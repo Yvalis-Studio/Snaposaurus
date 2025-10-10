@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class DinosaurQTE : MonoBehaviour
 {
-    [Header("QTE Settings")]
-    public float qteTimer = 5;
-    public int qteLength = 5;
+    [Header("QTE Difficulty Settings")]
+    [Tooltip("BASE time limit in seconds. Difficulty multiplies this (Easy: 1.5x, Normal: 1.0x, Hard: 0.75x)")]
+    public float baseTimeLimit = 5f;
+
+    [Tooltip("BASE number of keys to press. Difficulty adds to this (Easy: +0, Normal: +2, Hard: +4)")]
+    public int baseKeyCount = 3;
 
     [Header("Dinosaur Info")]
     public string dinoName = "T-Rex";

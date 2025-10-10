@@ -608,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206055789
@@ -1456,7 +1456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616115435
@@ -1779,7 +1779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739310044
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   useSuccessEffect: 1
   successHaloEffect: {fileID: 0}
   successEffectDuration: 0.5
-  dbmPull: 3
+  baseDbmPull: 3
   success: 0
   perfect: 1
 --- !u!4 &851164213
@@ -3044,8 +3044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b776f9444f314d9c81e7c6c7e373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
-  qteTimer: 5
-  qteLength: 3
+  baseTimeLimit: 16
+  baseKeyCount: 6
   dinoName: Archeopteryx
   perfectPhoto: {fileID: 6224611532056296403, guid: 5bee85237a7962c4fa4c69ac62276dae, type: 3}
   clearPhoto: {fileID: -930234671993221267, guid: 27a9dcb8cc19f2e4196c8404fb0fc506, type: 3}

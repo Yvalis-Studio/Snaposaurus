@@ -69,7 +69,10 @@ public class QTEManager : MonoBehaviour
 
 
     // DBM PULL
-    public float dbmPull = 3.0f;
+    [Header("Base Countdown Settings")]
+    [Tooltip("Base countdown duration - will be adjusted by difficulty")]
+    public float baseDbmPull = 3.0f;
+    float dbmPull; // Actual countdown duration after difficulty adjustment
     float dbmTimer;
     bool showingGo = false;
 
@@ -91,6 +94,16 @@ public class QTEManager : MonoBehaviour
 
     void Start()
     {
+        // Apply difficulty settings to countdown duration
+        if (DifficultySettings.Instance != null)
+        {
+            dbmPull = DifficultySettings.Instance.GetCountdownDuration();
+        }
+        else
+        {
+            dbmPull = baseDbmPull;
+        }
+
         dbmTimer = dbmPull;
 
         if (useTextDisplay && nextKeyText != null)
@@ -197,10 +210,26 @@ public class QTEManager : MonoBehaviour
     public void StartQTE()
     {
         // Debug.Log("StartQTE called - qteActive = true");
-        GenerateQTEKeyList(dinosaur.qteLength);
 
-        timeLimit = dinosaur.qteTimer;
-        timer = dinosaur.qteTimer;
+        // Apply difficulty settings to QTE parameters
+        int adjustedKeyCount = dinosaur.baseKeyCount;
+        float adjustedTimer = dinosaur.baseTimeLimit;
+
+        if (DifficultySettings.Instance != null)
+        {
+            adjustedKeyCount = DifficultySettings.Instance.CalculateKeyCount(dinosaur.baseKeyCount);
+            adjustedTimer = DifficultySettings.Instance.CalculateQTETimer(dinosaur.baseTimeLimit);
+            Debug.Log($"[QTE] Difficulty: {DifficultySettings.Instance.GetDifficulty()} | Base: {dinosaur.baseKeyCount} keys, {dinosaur.baseTimeLimit}s | Adjusted: {adjustedKeyCount} keys, {adjustedTimer}s");
+        }
+        else
+        {
+            Debug.LogWarning("[QTE] DifficultySettings.Instance is NULL! Using base values.");
+        }
+
+        GenerateQTEKeyList(adjustedKeyCount);
+
+        timeLimit = adjustedTimer;
+        timer = adjustedTimer;
         // Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
         qteActive = true;
         success = false;
@@ -233,11 +262,36 @@ public class QTEManager : MonoBehaviour
 
     void GenerateQTEKeyList(int length)
     {
+        bool preventDuplicates = DifficultySettings.Instance != null &&
+                                 DifficultySettings.Instance.ShouldPreventConsecutiveDuplicates();
+
+        string lastKey = null;
+
         while (length > 0)
         {
             length--;
-            string chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count() - 1)];
+            string chosenKey;
+
+            if (preventDuplicates && lastKey != null)
+            {
+                // Prevent consecutive duplicates by trying again if same key is chosen
+                int maxAttempts = 10; // Prevent infinite loop
+                int attempts = 0;
+                do
+                {
+                    chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count())];
+                    attempts++;
+                }
+                while (chosenKey == lastKey && attempts < maxAttempts);
+            }
+            else
+            {
+                // No restriction, pick randomly
+                chosenKey = possibleKeys[Random.Range(0, possibleKeys.Count())];
+            }
+
             qteKeyList.Add(chosenKey);
+            lastKey = chosenKey;
         }
     }
 
@@ -276,9 +330,15 @@ public class QTEManager : MonoBehaviour
 
     void UpdateKeySpriteDisplay()
     {
-        // Build list of keys to display: current key + queued keys
+        // Build list of keys to display: current key + next few queued keys (sliding window)
         List<string> keysToDisplay = new List<string> { qteNextKey };
-        keysToDisplay.AddRange(qteKeyList);
+
+        // Add only as many upcoming keys as we have slots for (minus 1 for current key)
+        int upcomingKeysToShow = Mathf.Min(keyDisplaySlots.Length - 1, qteKeyList.Count);
+        for (int i = 0; i < upcomingKeysToShow; i++)
+        {
+            keysToDisplay.Add(qteKeyList[i]);
+        }
 
         // Update each slot
         for (int i = 0; i < keyDisplaySlots.Length; i++)
@@ -603,6 +663,16 @@ public class QTEManager : MonoBehaviour
     public void RestartQTE()
     {
         // Debug.Log("Restarting QTE...");
+
+        // Reapply difficulty settings to countdown duration
+        if (DifficultySettings.Instance != null)
+        {
+            dbmPull = DifficultySettings.Instance.GetCountdownDuration();
+        }
+        else
+        {
+            dbmPull = baseDbmPull;
+        }
 
         // Reset timer
         dbmTimer = dbmPull;

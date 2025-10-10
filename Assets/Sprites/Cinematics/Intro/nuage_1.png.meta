@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2328b99e274e1620d8abfc0bc59f5c09
+guid: afe1238ff98df214290526f85f03c95b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -362537944700837082
-    second: mom2_0
+      213: -4218199000272511623
+    second: nuage_1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mom2_0
+      name: nuage_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 3521
+        height: 1793
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 623a18cf8a108faf0800000000000000
-      internalID: -362537944700837082
+      spriteID: 97d59d4bb52f575c0800000000000000
+      internalID: -4218199000272511623
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mom2_0: -362537944700837082
+      nuage_1_0: -4218199000272511623
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
