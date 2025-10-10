@@ -608,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206055789
@@ -1513,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &616115435
@@ -1836,7 +1836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -208.45444, y: 37.900757}
+  m_AnchoredPosition: {x: -208.45447, y: 37.900757}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739310044
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   useSuccessEffect: 1
   successHaloEffect: {fileID: 0}
   successEffectDuration: 0.5
-  dbmPull: 3
+  baseDbmPull: 3
   success: 0
   perfect: 1
 --- !u!4 &851164213
@@ -3044,8 +3044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b776f9444f314d9c81e7c6c7e373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
-  qteTimer: 5
-  qteLength: 3
+  baseTimeLimit: 10
+  baseKeyCount: 7
   dinoName: Brachiosaurus
   perfectPhoto: {fileID: -1604113851888788210, guid: 79761d3a1091cf74b95aa8c510a06487, type: 3}
   clearPhoto: {fileID: -8983001202398076202, guid: 140943f9cb4842d42819f27a8043963d, type: 3}
