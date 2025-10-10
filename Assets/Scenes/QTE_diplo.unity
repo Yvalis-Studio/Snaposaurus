@@ -1864,22 +1864,22 @@ MonoBehaviour:
   - {fileID: 1051775473}
   - {fileID: 1090574410}
   - {fileID: 287404829}
-  spriteUpQwerty: {fileID: 0}
-  spriteDownQwerty: {fileID: 0}
-  spriteLeftQwerty: {fileID: 0}
-  spriteRightQwerty: {fileID: 0}
-  spriteUpPressedQwerty: {fileID: 0}
-  spriteDownPressedQwerty: {fileID: 0}
-  spriteLeftPressedQwerty: {fileID: 0}
-  spriteRightPressedQwerty: {fileID: 0}
-  spriteUpAzerty: {fileID: 0}
-  spriteDownAzerty: {fileID: 0}
-  spriteLeftAzerty: {fileID: 0}
-  spriteRightAzerty: {fileID: 0}
-  spriteUpPressedAzerty: {fileID: 0}
-  spriteDownPressedAzerty: {fileID: 0}
-  spriteLeftPressedAzerty: {fileID: 0}
-  spriteRightPressedAzerty: {fileID: 0}
+  spriteUpQwerty: {fileID: -7097860344766265739, guid: 95c8e7e32e786614aba541cf450439bf, type: 3}
+  spriteDownQwerty: {fileID: 1532440346177022758, guid: 065bbcc7f13fca04abcf1a7f4319352e, type: 3}
+  spriteLeftQwerty: {fileID: -4910088520043721169, guid: bd9050e445835a24b870a2d7fb491c5b, type: 3}
+  spriteRightQwerty: {fileID: 2957404852419100943, guid: c0ea3a8ae4894a44d9c7d66f9c341464, type: 3}
+  spriteUpPressedQwerty: {fileID: 5421173072132729213, guid: 95c8e7e32e786614aba541cf450439bf, type: 3}
+  spriteDownPressedQwerty: {fileID: 4837994805361116707, guid: 065bbcc7f13fca04abcf1a7f4319352e, type: 3}
+  spriteLeftPressedQwerty: {fileID: -807609689785687374, guid: bd9050e445835a24b870a2d7fb491c5b, type: 3}
+  spriteRightPressedQwerty: {fileID: 5351216537501832570, guid: c0ea3a8ae4894a44d9c7d66f9c341464, type: 3}
+  spriteUpAzerty: {fileID: -2256291859449093197, guid: 36f2d44fd0bf31c41b0e6e7accb959e8, type: 3}
+  spriteDownAzerty: {fileID: 1532440346177022758, guid: 065bbcc7f13fca04abcf1a7f4319352e, type: 3}
+  spriteLeftAzerty: {fileID: 4359327472603921858, guid: 832da05fdb587094eb1b4f1d8487890c, type: 3}
+  spriteRightAzerty: {fileID: 2957404852419100943, guid: c0ea3a8ae4894a44d9c7d66f9c341464, type: 3}
+  spriteUpPressedAzerty: {fileID: -1987830447329108927, guid: 36f2d44fd0bf31c41b0e6e7accb959e8, type: 3}
+  spriteDownPressedAzerty: {fileID: 4837994805361116707, guid: 065bbcc7f13fca04abcf1a7f4319352e, type: 3}
+  spriteLeftPressedAzerty: {fileID: 1420268961077868926, guid: 832da05fdb587094eb1b4f1d8487890c, type: 3}
+  spriteRightPressedAzerty: {fileID: 5351216537501832570, guid: c0ea3a8ae4894a44d9c7d66f9c341464, type: 3}
   activeKeyScale: 1.2
   activeKeyColor: {r: 1, g: 1, b: 1, a: 1}
   queuedKeyColor: {r: 1, g: 1, b: 1, a: 0.6}
