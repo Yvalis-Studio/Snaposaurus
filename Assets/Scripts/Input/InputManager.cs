@@ -65,15 +65,11 @@ public class InputManager : MonoBehaviour
 
     void InitializeInputActions()
     {
-        Debug.Log("[InputManager] InitializeInputActions() called");
-
         if (inputActions == null)
         {
             Debug.LogError("[InputManager] InputActionAsset is not assigned!");
             return;
         }
-
-        Debug.Log($"[InputManager] InputActionAsset assigned: {inputActions.name}");
 
         // Get action maps
         playerActionMap = inputActions.FindActionMap("Player");
@@ -84,8 +80,6 @@ public class InputManager : MonoBehaviour
             Debug.LogError("[InputManager] Could not find Player or UI action maps!");
             return;
         }
-
-        Debug.Log($"[InputManager] Found action maps - Player: {playerActionMap != null}, UI: {uiActionMap != null}");
 
         // Cache player actions
         MoveAction = playerActionMap.FindAction("Move");
@@ -114,12 +108,8 @@ public class InputManager : MonoBehaviour
         // Load saved layout preference
         LoadLayoutPreference();
 
-        Debug.Log($"[InputManager] Loaded layout preference: {currentLayout}");
-
         // Enable player actions by default
         EnablePlayerInput();
-
-        Debug.Log("[InputManager] Initialization complete!");
     }
 
     public void EnablePlayerInput()
@@ -163,8 +153,6 @@ public class InputManager : MonoBehaviour
 
         // Notify all keybind displays to update
         NotifyLayoutChanged();
-
-        Debug.Log($"InputManager: Switched to {newLayout} layout");
     }
 
     /// <summary>

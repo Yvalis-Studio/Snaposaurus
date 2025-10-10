@@ -1,198 +1,239 @@
 # Unity New Input System - Setup Guide
 
-## ✅ Code Changes Complete!
+## Overview
 
-All scripts have been updated to use the new Input System. Here's what you need to do in Unity:
-
----
-
-## Step 1: Create InputManager GameObject
-
-1. **In your TitleScreen scene:**
-   - Right-click in Hierarchy → Create Empty
-   - Name it: `InputManager`
-   - Add Component → `InputManager` script
-
-2. **Assign the Input Action Asset:**
-   - In Inspector, find "Input Actions" field
-   - Drag `Assets/InputSystem_Actions.inputactions` into this field
-
-3. **IMPORTANT:** The InputManager is set to DontDestroyOnLoad, so it only needs to exist in the first scene (TitleScreen)
+This guide explains how to set up and use the QWERTY/AZERTY keyboard layout switching system in Snaposaurus.
 
 ---
 
-## Step 2: Update Player GameObject (in Level scenes)
+## ✅ System Status
 
-**Find your Player GameObject and:**
-
-1. **Remove old InputAction fields** (in Inspector):
-   - Look at PlayerController component
-   - The fields `moveAction`, `jumpAction`, `climbAction`, `interactAction` are now gone
-   - ✅ No action needed - just verify they're gone after Unity recompiles
-
----
-
-## Step 3: Update PlayerQTE GameObject (in QTE scenes)
-
-**Find your PlayerQTE GameObject and:**
-
-1. **Remove old InputAction fields** (in Inspector):
-   - Look at PlayerQTE component
-   - The fields `up`, `down`, `left`, `right` are now gone
-   - ✅ No action needed - just verify they're gone after Unity recompiles
+The input system is **fully implemented and functional**. This guide covers:
+- Initial Unity setup requirements
+- How the system works
+- Configuration in Unity Editor
+- Testing procedures
 
 ---
 
-## Step 4: Setup QTEManager Sprites
+## Quick Setup Checklist
 
-**Find your QTEManager GameObject and:**
+### 1. Create InputManager GameObject (First Scene Only)
 
-1. **You now have TWO sprite sets** (QWERTY and AZERTY):
-   - Old fields like `spriteUp`, `spriteDown` are REPLACED with:
-   - `spriteUpQwerty` / `spriteUpAzerty`
-   - `spriteDownQwerty` / `spriteDownAzerty`
-   - `spriteLeftQwerty` / `spriteLeftAzerty`
-   - `spriteRightQwerty` / `spriteRightAzerty`
-   - Same for pressed variants
+In your **TitleScreen** scene:
 
-2. **Assign sprites based on key:**
-   - **QWERTY Up** → W key sprite
-   - **QWERTY Down** → S key sprite
-   - **QWERTY Left** → A key sprite
-   - **QWERTY Right** → D key sprite
-   - **AZERTY Up** → Z key sprite
-   - **AZERTY Down** → S key sprite
-   - **AZERTY Left** → Q key sprite
-   - **AZERTY Right** → D key sprite
+1. Right-click in Hierarchy → Create Empty
+2. Name it: `InputManager`
+3. Add Component → `InputManager` script
+4. In Inspector, assign `Assets/InputSystem_Actions.inputactions` to the **Input Actions** field
 
-3. **Your sprite locations:**
-   - Find them in: `Assets/Sprites/Keybind/`
-   - Available: `w.png`, `a.png`, `s.png`, `d.png`, `z.png`, `q.png`
+**Note:** The InputManager persists across scenes (DontDestroyOnLoad), so it only needs to exist in the first scene.
 
 ---
 
-## Step 5: Add Layout Toggle to Controls Menu
+### 2. Configure QTEManager Sprites
 
-**In your Controls Panel:**
+The QTE system requires separate sprite sets for QWERTY and AZERTY layouts.
 
-1. **Create Toggle Button:**
-   - Right-click ControlsPanel → UI → Button
-   - Name it: `LayoutToggleButton`
-   - Add Component → `KeybindLayoutManager` script
+**Find your QTEManager GameObject and assign:**
 
-2. **Assign fields in KeybindLayoutManager:**
-   - `Toggle Button` → Drag the button itself
-   - `Layout Text` → (Optional) Create a TextMeshPro text to show "Current Layout: QWERTY"
+#### QWERTY Sprites:
+- Sprite Up Qwerty → `w.png`
+- Sprite Down Qwerty → `s.png`
+- Sprite Left Qwerty → `a.png`
+- Sprite Right Qwerty → `d.png`
 
-3. **Position it nicely in your Controls UI**
+#### AZERTY Sprites:
+- Sprite Up Azerty → `z.png`
+- Sprite Down Azerty → `s.png`
+- Sprite Left Azerty → `q.png`
+- Sprite Right Azerty → `d.png`
 
----
+**Note:** Also assign pressed variants if you have them. If not, you can reuse the normal sprites.
 
-## Step 6: (Optional) Add Individual Keybind Displays
-
-**To show keybinds in menus with auto-updating sprites:**
-
-1. **Create UI Image:**
-   - Right-click → UI → Image
-   - Name it descriptively (e.g., "JumpKeyDisplay")
-
-2. **Add KeybindDisplay component:**
-   - Add Component → `KeybindDisplay`
-
-3. **Configure it:**
-   - `Key Action` → Type the action name (e.g., "jump", "up", "down")
-   - `QWERTY Sprites` → Assign normal & pressed sprites for QWERTY
-   - `AZERTY Sprites` → Assign normal & pressed sprites for AZERTY
-   - `Supports Pressed State` → Check if you want hover/press feedback
-
-4. **Repeat for all keys you want to display visually**
+**Sprite Location:** `Assets/Sprites/Keybind/`
 
 ---
 
-## Step 7: Test Everything
+### 3. Add Layout Toggle Button (Optional)
 
-### Test Checklist:
+To let players switch between QWERTY and AZERTY:
 
-1. ✅ **Play TitleScreen** → InputManager should be created
-2. ✅ **Press ESC** → Pause menu should work
-3. ✅ **Enter Level** → Player movement works (WASD or ZQSD)
-4. ✅ **Open Controls Menu** → Click layout toggle button
-5. ✅ **Verify sprite changes** → QTE keys should show W/A/S/D or Z/Q/S/D
-6. ✅ **Play QTE** → Keys match the displayed sprites
-7. ✅ **Toggle layout** → All keybind displays update automatically
-8. ✅ **Restart game** → Layout preference persists (saved to PlayerPrefs)
+1. In your Controls/Settings menu, create a UI Button
+2. Name it: `LayoutToggleButton`
+3. Add Component → `KeybindLayoutManager` script
+4. Assign fields:
+   - **Toggle Button** → The button itself
+   - **Layout Text** → (Optional) TextMeshPro to display current layout
 
 ---
 
-## Step 8: Cleanup Old References (After Testing)
+### 4. Add Keybind Display Components (Optional)
 
-**Once everything works, you can clean up:**
+To show individual keybinds with auto-updating sprites:
 
-1. No old scripts to delete - we only modified existing ones
-2. Old InputAction fields in Inspector will automatically disappear after recompile
+1. Create UI Image for each keybind you want to display
+2. Add Component → `KeybindDisplay`
+3. Configure:
+   - **Key Action** → Action name (e.g., "jump", "up", "down")
+   - **QWERTY Sprites** → Normal & pressed sprites
+   - **AZERTY Sprites** → Normal & pressed sprites
+   - **Supports Pressed State** → Enable for hover/press feedback
+
+---
+
+## How It Works
+
+### System Architecture
+
+**InputManager (Singleton)**
+- Lives in TitleScreen, persists across all scenes
+- Loads and manages all input actions from `InputSystem_Actions.inputactions`
+- Handles QWERTY ↔ AZERTY layout switching
+- Saves layout preference to PlayerPrefs
+- Notifies UI components when layout changes
+
+**Layout Switching Flow:**
+1. User clicks toggle button → `KeybindLayoutManager.OnToggleClicked()`
+2. Calls `InputManager.ToggleLayout()`
+3. InputManager saves preference and notifies all UI components
+4. All `KeybindDisplay` components and QTE sprites update automatically
+
+**Key Mappings:**
+
+| Direction | QWERTY | AZERTY |
+|-----------|--------|--------|
+| Up        | W      | Z      |
+| Down      | S      | S      |
+| Left      | A      | Q      |
+| Right     | D      | D      |
+
+---
+
+## Testing Checklist
+
+After setup, test the following:
+
+- [ ] **Scene Load** → InputManager created in TitleScreen
+- [ ] **Pause Menu** → ESC key opens/closes pause menu
+- [ ] **Player Movement** → WASD/ZQSD works in gameplay
+- [ ] **Layout Toggle** → Button in Controls menu switches layout
+- [ ] **QTE Sprites** → Keys display correctly (W/A/S/D or Z/Q/S/D)
+- [ ] **QTE Gameplay** → Correct keys are detected during QTE
+- [ ] **Persistence** → Layout preference saved after restart
+
+---
+
+## File Structure
+
+```
+Assets/
+├── InputSystem_Actions.inputactions
+│   └── Contains QWERTY (WASD) and AZERTY (ZQSD) bindings
+│
+├── Scripts/
+│   ├── Input/
+│   │   ├── InputManager.cs         - Central input management
+│   │   ├── InputSettings.cs        - PlayerPrefs storage
+│   │   └── InputDebugger.cs        - Debug helper (optional)
+│   │
+│   ├── UI/
+│   │   ├── KeybindDisplay.cs       - Individual keybind UI component
+│   │   └── KeybindLayoutManager.cs - Layout toggle button
+│   │
+│   ├── MenuNavigation.cs           - Uses InputManager.PauseAction
+│   ├── PlayerController.cs         - Uses InputManager for movement
+│   ├── PlayerQTE.cs                - Uses InputManager for QTE input
+│   └── QTEManager.cs               - Dynamic sprite display
+```
+
+---
+
+## API Reference
+
+### Accessing InputManager
+
+```csharp
+// Check if InputManager exists
+if (InputManager.Instance != null)
+{
+    // Read movement input
+    Vector2 move = InputManager.Instance.MoveAction.ReadValue<Vector2>();
+
+    // Check if jump was pressed
+    if (InputManager.Instance.JumpAction.WasPressedThisFrame())
+    {
+        Jump();
+    }
+
+    // Get current layout
+    var layout = InputManager.Instance.currentLayout; // QWERTY or AZERTY
+
+    // Toggle layout programmatically
+    InputManager.Instance.ToggleLayout();
+}
+```
+
+### QTE Directional Input
+
+```csharp
+// Check specific direction (QTE system)
+if (InputManager.Instance.WasDirectionPressedThisFrame("up"))
+{
+    HandleUpPress();
+}
+
+// Get key name for current layout
+string keyName = InputManager.Instance.GetDirectionKeyName("up"); // "w" or "z"
+```
 
 ---
 
 ## Troubleshooting
 
-### Error: "InputManager does not exist"
-- **Solution:** Go back to Unity and let it recompile
-- **Check:** Make sure `InputManager.cs` is in `Assets/Scripts/Input/`
+### InputManager not found
+- Verify InputManager GameObject exists in TitleScreen scene
+- Check that InputManager script is attached
+- Verify Input Action Asset is assigned in Inspector
 
 ### Movement doesn't work
-- **Check:** InputManager GameObject exists in scene
-- **Check:** Input Action Asset is assigned in InputManager Inspector
-- **Check:** PlayerController is using new code (no more individual InputAction fields)
+- Check that InputManager exists in scene
+- Ensure PlayerController has no null references
+- Check Console for errors
 
 ### QTE shows wrong keys
-- **Check:** QTEManager has both QWERTY and AZERTY sprites assigned
-- **Check:** Sprite names match the keys (W for up in QWERTY, Z for up in AZERTY)
+- Verify both QWERTY and AZERTY sprites are assigned in QTEManager
+- Check that sprite names match keys (W→w.png, Z→z.png, etc.)
 
-### Layout toggle doesn't work
-- **Check:** KeybindLayoutManager is attached to the button
-- **Check:** Toggle Button field is assigned
-- **Check:** InputManager exists in scene
-
-### Sprites don't update when toggling
-- **Check:** KeybindDisplay components exist
-- **Check:** Both sprite sets (QWERTY and AZERTY) are assigned
+### Layout doesn't persist
+- PlayerPrefs are saved automatically
+- Check that InputSettings.cs is in the project
+- Try deleting PlayerPrefs: `PlayerPrefs.DeleteAll()` then restart
 
 ---
 
-## What Changed (Summary)
+## Additional Features
 
-### New Files Created:
-- `Assets/Scripts/Input/InputManager.cs` - Central input management
-- `Assets/Scripts/Input/InputSettings.cs` - Persistent layout storage
-- `Assets/Scripts/UI/KeybindDisplay.cs` - Individual keybind sprite component
-- `Assets/Scripts/UI/KeybindLayoutManager.cs` - Layout toggle button
+### Input Debugging
 
-### Modified Files:
-- `Assets/InputSystem_Actions.inputactions` - Added AZERTY bindings + Pause action
-- `Assets/Scripts/MenuNavigation.cs` - Uses InputManager.PauseAction
-- `Assets/Scripts/PlayerController.cs` - Uses InputManager actions
-- `Assets/Scripts/PlayerQTE.cs` - Uses InputManager directional detection
-- `Assets/Scripts/QTEManager.cs` - Supports QWERTY/AZERTY sprite sets
+Attach `InputDebugger.cs` to any GameObject to:
+- Log input events to Console
+- Right-click component → "Toggle Layout" to test
+- Right-click component → "Print Current Bindings" to see mappings
 
-### Inspector Changes You Need to Make:
-1. Create InputManager GameObject (TitleScreen)
-2. Assign Input Action Asset to InputManager
-3. Update QTEManager sprite assignments (QWERTY/AZERTY sets)
-4. Create Layout Toggle button with KeybindLayoutManager
-5. (Optional) Add KeybindDisplay components to menu UI
+### Future Enhancements
+
+The system supports future additions:
+- **Full rebinding UI** - Let users customize any key
+- **More layouts** - Add DVORAK, COLEMAK, etc.
+- **Gamepad support** - Already functional in Input Action Asset
+- **In-game hints** - Use KeybindDisplay for contextual prompts
 
 ---
 
-## Next Steps
+## Questions?
 
-1. Open Unity and let it compile
-2. Follow Step 1-7 above
-3. Test thoroughly
-4. Let me know if you encounter any issues!
-
-The system is designed to:
-- ✅ Auto-detect keyboard layout preference
-- ✅ Persist choice across sessions
-- ✅ Update all UI sprites automatically when toggling
-- ✅ Work with both menu displays and in-game QTEs
-- ✅ Support normal + pressed sprite states
+The system is production-ready. If you encounter any issues, check:
+1. Console for error messages
+2. InputManager Inspector for missing references
+3. This guide's Troubleshooting section
