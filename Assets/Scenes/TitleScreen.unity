@@ -1403,7 +1403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: zw
+  keyAction: up
+  fixedKey: 
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -1784,7 +1785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: esc
+  keyAction: 
+  fixedKey: esc
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -2385,7 +2387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.7, y: 6.8523}
+  m_AnchoredPosition: {x: -176.70001, y: 6.8523}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &880172354
@@ -2422,7 +2424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -99.09999, y: -99.3}
+  m_AnchoredPosition: {x: -182.1, y: -99.3}
   m_SizeDelta: {x: 75, y: 110.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &931904288
@@ -2534,7 +2536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: s
+  keyAction: down
+  fixedKey: 
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -8620,7 +8623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: qa
+  keyAction: left
+  fixedKey: 
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -8733,7 +8737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: e
+  keyAction: 
+  fixedKey: e
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -13895,7 +13900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 76, y: -5.4}
+  m_AnchoredPosition: {x: -7, y: -5.4}
   m_SizeDelta: {x: 75, y: 110.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1538371531
@@ -18989,7 +18994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200.5, y: -99.59999}
+  m_AnchoredPosition: {x: 117.49999, y: -99.59999}
   m_SizeDelta: {x: 75, y: 110.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1618141012
@@ -19765,7 +19770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1722828724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19783,8 +19788,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199.6, y: -8.3}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 155.6, y: -8.3}
+  m_SizeDelta: {x: 183.6, y: 94.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722828725
 MonoBehaviour:
@@ -20189,7 +20194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: d
+  keyAction: right
+  fixedKey: 
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -20460,7 +20466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f508fa8901755d797bd32748a0487599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeybindHoverEffect
-  monitoredKey: space
+  keyAction: 
+  fixedKey: space
   enableHoverAnimation: 1
   hoverScale: 1.1
   animationSpeed: 10
@@ -21400,7 +21407,7 @@ GameObject:
   - component: {fileID: 2110757337}
   - component: {fileID: 2110757338}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

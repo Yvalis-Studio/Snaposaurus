@@ -10,8 +10,11 @@ using UnityEngine.InputSystem;
 public class KeybindHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Keyboard Input")]
-    [Tooltip("Which key should trigger the pressed state? (e.g., 'w', 'a', 's', 'd', 'space', 'e', 'escape')")]
-    [SerializeField] private string monitoredKey = "";
+    [Tooltip("The action this key represents (e.g., 'up', 'down', 'left', 'right') - will auto-adjust for layout")]
+    [SerializeField] private string keyAction = "";
+
+    [Tooltip("OR specify a fixed key that doesn't change with layout (e.g., 'space', 'e', 'escape')")]
+    [SerializeField] private string fixedKey = "";
 
     [Header("Animation (Optional)")]
     [SerializeField] private bool enableHoverAnimation = false;
@@ -43,12 +46,14 @@ public class KeybindHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     void CheckKeyboardInput()
     {
-        if (string.IsNullOrEmpty(monitoredKey)) return;
-
         var keyboard = Keyboard.current;
         if (keyboard == null) return;
 
-        bool keyCurrentlyPressed = IsKeyPressed(keyboard, monitoredKey.ToLower());
+        // Determine which key to monitor based on layout
+        string currentKey = GetCurrentMonitoredKey();
+        if (string.IsNullOrEmpty(currentKey)) return;
+
+        bool keyCurrentlyPressed = IsKeyPressed(keyboard, currentKey.ToLower());
 
         // Update pressed state
         if (keyCurrentlyPressed != isKeyPressed)
@@ -56,6 +61,26 @@ public class KeybindHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerE
             isKeyPressed = keyCurrentlyPressed;
             UpdatePressedState();
         }
+    }
+
+    /// <summary>
+    /// Get the key to monitor based on current keyboard layout
+    /// </summary>
+    string GetCurrentMonitoredKey()
+    {
+        // If a fixed key is specified, always use it (for non-directional keys)
+        if (!string.IsNullOrEmpty(fixedKey))
+        {
+            return fixedKey;
+        }
+
+        // If keyAction is specified, translate it based on current layout
+        if (!string.IsNullOrEmpty(keyAction) && InputManager.Instance != null)
+        {
+            return InputManager.Instance.GetDirectionKeyName(keyAction);
+        }
+
+        return "";
     }
 
     bool IsKeyPressed(Keyboard keyboard, string key)
