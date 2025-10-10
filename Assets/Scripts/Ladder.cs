@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class Ladder : MonoBehaviour
 {
     private bool isInRange;
+    private bool isClimbingLadder;
     private PlayerController playerController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -15,12 +17,22 @@ public class Ladder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
+        // Only allow climbing if player is in range and pressed E
+        if (isInRange && InputManager.Instance != null)
         {
-            playerController.isClimbing = true;
+            // Start climbing when E is pressed
+            if (InputManager.Instance.InteractAction.WasPressedThisFrame())
+            {
+                isClimbingLadder = !isClimbingLadder; // Toggle climbing on/off
+            }
+
+            // Set climbing state
+            playerController.isClimbing = isClimbingLadder;
         }
         else
         {
+            // Player left ladder range
+            isClimbingLadder = false;
             playerController.isClimbing = false;
         }
     }
