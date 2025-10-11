@@ -211,6 +211,13 @@ public class QTEManager : MonoBehaviour
     {
         // Debug.Log("StartQTE called - qteActive = true");
 
+        // Validate dinosaur reference exists
+        if (dinosaur == null)
+        {
+            Debug.LogError("[QTE] DinosaurQTE reference is NULL! Make sure QTESceneInitializer has configured it.");
+            return;
+        }
+
         // Apply difficulty settings to QTE parameters
         int adjustedKeyCount = dinosaur.baseKeyCount;
         float adjustedTimer = dinosaur.baseTimeLimit;

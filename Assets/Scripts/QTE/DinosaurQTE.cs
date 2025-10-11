@@ -11,7 +11,7 @@ public class DinosaurQTE : MonoBehaviour
     public int baseKeyCount = 3;
 
     [Header("Dinosaur Info")]
-    public string dinoName = "T-Rex";
+    public string dinoName = "";
 
     [Header("Photo Sprites")]
     public Sprite perfectPhoto; // Photo perfect si succès
@@ -64,7 +64,7 @@ public class DinosaurQTE : MonoBehaviour
 
     void ShowPhoto()
     {
-        // Debug.Log($"ShowPhoto called - Success: {qteManager.isSuccess}");
+        Debug.Log($"ShowPhoto called - Success: {qteManager.isSuccess}, Perfect: {qteManager.perfect}");
 
         Sprite photoToShow;
         // Choose photo based on QTE result
@@ -73,29 +73,31 @@ public class DinosaurQTE : MonoBehaviour
             if (qteManager.perfect)
             {
                 photoToShow = perfectPhoto;
+                Debug.Log($"Using perfectPhoto: {(perfectPhoto != null ? perfectPhoto.name : "NULL")}");
             }
             else
             {
                 photoToShow = clearPhoto;
+                Debug.Log($"Using clearPhoto: {(clearPhoto != null ? clearPhoto.name : "NULL")}");
             }
         }
         else
         {
             photoToShow = blurryPhoto;
+            Debug.Log($"Using blurryPhoto: {(blurryPhoto != null ? blurryPhoto.name : "NULL")}");
         }
 
-        // Sprite photoToShow = qteManager.isSuccess ? clearPhoto : blurryPhoto;
-            // Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
+        Debug.Log($"Photo to show: {(photoToShow != null ? photoToShow.name : "NULL")}");
 
         if (photoToShow != null)
         {
             // Show and save the photo
-            // Debug.Log("Calling PhotoManager.ShowAndSavePhoto...");
+            Debug.Log("Calling PhotoManager.ShowAndSavePhoto...");
             photoManager.ShowAndSavePhoto(dinoName, photoToShow, qteManager.isSuccess);
         }
         else
         {
-            // Debug.LogWarning($"No photo sprite assigned for {(qteManager.isSuccess ? "success" : "failure")}");
+            Debug.LogWarning($"No photo sprite assigned for {(qteManager.isSuccess ? "success" : "failure")}");
         }
 
         // Schedule retry only if failed and autoRetry enabled

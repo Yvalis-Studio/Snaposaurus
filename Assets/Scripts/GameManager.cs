@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public DinosaurQTE Dino1;
     public Vector3 playerPosition;
 
+    [Header("Current Encounter")]
+    private DinosaurData currentDinosaurEncounter;
+
     [Header("Difficulty Settings")]
     [SerializeField]
     private DifficultySettings.DifficultyLevel gameDifficulty = DifficultySettings.DifficultyLevel.Easy;
@@ -64,5 +67,36 @@ public class GameManager : MonoBehaviour
     public DifficultySettings.DifficultyLevel GetDifficulty()
     {
         return gameDifficulty;
+    }
+
+    /// <summary>
+    /// Store the dinosaur data for the current QTE encounter.
+    /// Called by QTETrigger before transitioning to QTE scene.
+    /// </summary>
+    public void SetCurrentDinosaurEncounter(DinosaurData dinosaurData)
+    {
+        currentDinosaurEncounter = dinosaurData;
+        Debug.Log($"[GameManager] Set current encounter: {dinosaurData.dinosaurName}");
+    }
+
+    /// <summary>
+    /// Get the dinosaur data for the current QTE encounter.
+    /// Called by QTE scene during initialization.
+    /// </summary>
+    public DinosaurData GetCurrentDinosaurEncounter()
+    {
+        if (currentDinosaurEncounter == null)
+        {
+            Debug.LogWarning("[GameManager] No dinosaur encounter data found! Did you enter QTE scene directly?");
+        }
+        return currentDinosaurEncounter;
+    }
+
+    /// <summary>
+    /// Clear the current encounter data (optional cleanup after QTE ends)
+    /// </summary>
+    public void ClearCurrentEncounter()
+    {
+        currentDinosaurEncounter = null;
     }
 }

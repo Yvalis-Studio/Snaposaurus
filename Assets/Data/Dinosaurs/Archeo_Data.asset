@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac55bdb9397fd494181ef37ece5a1a2b, type: 3}
+  m_Name: Archeo_Data
+  m_EditorClassIdentifier: Assembly-CSharp::DinosaurData
+  dinosaurName: Archeopteryx
+  dinosaurID: archeopteryx
+  dinosaurPrefab: {fileID: 0}
+  dinosaurSprite: {fileID: 3424786027501416612, guid: f43f1b398199428479baf2b92d9fd612, type: 3}
+  baseTimeLimit: 5
+  baseKeyCount: 3
+  perfectPhoto: {fileID: 6224611532056296403, guid: 5bee85237a7962c4fa4c69ac62276dae, type: 3}
+  clearPhoto: {fileID: -930234671993221267, guid: 27a9dcb8cc19f2e4196c8404fb0fc506, type: 3}
+  blurryPhoto: {fileID: -1037005188454844670, guid: bc2c36c5952f55a4da4332540b2f093f, type: 3}
+  customPlayerSprite: {fileID: 0}

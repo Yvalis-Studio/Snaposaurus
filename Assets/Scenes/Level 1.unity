@@ -32528,6 +32528,96 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &677284436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 677284438}
+  - component: {fileID: 677284437}
+  m_Layer: 0
+  m_Name: e_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &677284437
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677284436}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 5157330750027594722, guid: b96cb25a63d34ff4081a5f1d01173f2d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &677284438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677284436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.07, y: -22.84, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735903333
 GameObject:
   m_ObjectHideFlags: 0
@@ -41782,7 +41872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c434576e9480fb748909311a05a66612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETrigger
-  targetScene: QTE_triceratops
+  dinosaurData: {fileID: 11400000, guid: 3b15da61275095a488059067d25eab11, type: 2}
+  qteSceneName: QTE
 --- !u!61 &909687448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42422,7 +42513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c434576e9480fb748909311a05a66612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETrigger
-  targetScene: QTE_diplo
+  dinosaurData: {fileID: 11400000, guid: 9308fbce24a22cd429952b12a07c995e, type: 2}
+  qteSceneName: QTE
 --- !u!61 &1012419715
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194301,7 +194393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c434576e9480fb748909311a05a66612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETrigger
-  targetScene: QTE_archeo
+  dinosaurData: {fileID: 11400000, guid: d8c8dcd84a9284d40a580dbe1660e1f6, type: 2}
+  qteSceneName: QTE
 --- !u!61 &1961768910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -194359,7 +194452,7 @@ GameObject:
   - component: {fileID: 1976072162}
   - component: {fileID: 1976072161}
   m_Layer: 0
-  m_Name: BattleTrigger
+  m_Name: QTETrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194372,12 +194465,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976072160}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c434576e9480fb748909311a05a66612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETrigger
-  targetScene: 
+  dinosaurData: {fileID: 0}
+  qteSceneName: QTE
 --- !u!4 &1976072162
 Transform:
   m_ObjectHideFlags: 0
@@ -236746,7 +236840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c434576e9480fb748909311a05a66612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QTETrigger
-  targetScene: QTE_godzilla
+  dinosaurData: {fileID: 11400000, guid: 76c3e843bf8b6154fb3a1f06e93c6752, type: 2}
+  qteSceneName: QTE
 --- !u!61 &2080125726
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237032,3 +237127,4 @@ SceneRoots:
   - {fileID: 2071677577}
   - {fileID: 161120991}
   - {fileID: 122795048}
+  - {fileID: 677284438}

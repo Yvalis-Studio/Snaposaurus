@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac55bdb9397fd494181ef37ece5a1a2b, type: 3}
+  m_Name: Diplo_Data
+  m_EditorClassIdentifier: Assembly-CSharp::DinosaurData
+  dinosaurName: Brachiosaurus
+  dinosaurID: brachiosaurus
+  dinosaurPrefab: {fileID: 0}
+  dinosaurSprite: {fileID: 8271553017241889795, guid: 2d300394f0d07d746ad677003bd6b061, type: 3}
+  baseTimeLimit: 5
+  baseKeyCount: 3
+  perfectPhoto: {fileID: 8456519085132034961, guid: c12a53114cbb3cb48baa1fd559375325, type: 3}
+  clearPhoto: {fileID: -7686102315440524808, guid: bbce105e7b0ee834b8e5ca54c9dd0547, type: 3}
+  blurryPhoto: {fileID: -7401154631300024416, guid: 783fa62ceb9a5144ebe09ad2f107e0b5, type: 3}
+  customPlayerSprite: {fileID: 0}

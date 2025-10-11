@@ -167,7 +167,8 @@ public class CinematicManager : MonoBehaviour
         }
 
         fadePanel.alpha = 0f;
-        fadePanel.gameObject.SetActive(false);
+        // Note: Keeping fade panel active for visualization purposes
+        // fadePanel.gameObject.SetActive(false);
     }
 
     /// <summary>

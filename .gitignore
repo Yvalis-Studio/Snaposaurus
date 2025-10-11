@@ -73,6 +73,7 @@ mono_crash.*
 *.unitypackage
 *.unitypackage.meta
 *.app
+WinBuild/
 
 # Crashlytics generated file
 crashlytics-build.properties
