@@ -3180,7 +3180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b776f9444f314d9c81e7c6c7e373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
-  baseTimeLimit: 8
+  baseTimeLimit: 6
   baseKeyCount: 4
   dinoName: Triceratops
   perfectPhoto: {fileID: 518067427598354400, guid: 06df2012f2404a247b1441f5febfbfa5, type: 3}
