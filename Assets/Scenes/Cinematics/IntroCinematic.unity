@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
   textComponent: {fileID: 1171207785}
-  fullText: 'A few moment later
+  fullText: 'A few moments later
 
     .........'
   delayBetweenChars: 0.05
@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
   textComponent: {fileID: 2142141386}
-  fullText: Again? I'm reading it every night!
+  fullText: Again ? We're reading it every night
   delayBetweenChars: 0.05
   autoStart: 0
   startDelay: 0
