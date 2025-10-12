@@ -234,6 +234,18 @@ public class MenuNavigation : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
+        // Destroy the persistent menu so TitleScreen can create a fresh one
+        if (canvasRoot != null)
+        {
+            Destroy(canvasRoot);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        Instance = null;
+
         SceneTransition.Instance.TransitionToScene("TitleScreen");
     }
 
