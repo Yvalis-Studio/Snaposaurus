@@ -19,75 +19,88 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    // Input actions are now managed by InputManager
-    // No need for individual InputAction references
-
-    [Header("Ladder")]
-    public bool isClimbing;
-
     [Header("SoundEffects")]
     public AudioSource footstepsSound;
 
-    Rigidbody2D rb;
-    bool isGrounded;
-    float moveInput;
-    float climbInput;
+    [Header("Ladder")]
+    private bool _isClimbing;
+    public bool isClimbing
+    {
+        get { return _isClimbing; }
+        set
+        {
+            if (_isClimbing == value) return; // Ne fait rien si l'état ne change pas
+            _isClimbing = value;
 
-    Animator animator;
-
-    bool facingRight = true;
+            if (_isClimbing)
+            {
+                // Passe en mode "fantôme" pour ignorer toute la physique
+                rb.bodyType = RigidbodyType2D.Kinematic; 
+                rb.linearVelocity = Vector2.zero; // Stoppe tout mouvement en cours
+                animator.SetBool("IsClimbing", true);
+            }
+            else
+            {
+                // Revient au mode physique normal
+                rb.bodyType = RigidbodyType2D.Dynamic; 
+                animator.SetBool("IsClimbing", false);
+            }
+        }
+    }
+    
+    // Variables internes
+    private bool isOnLadder;
+    private Rigidbody2D rb;
+    private bool isGrounded;
+    private float moveInput;
+    private float climbInput;
+    private Animator animator;
+    private bool facingRight = true;
 
     void Start()
     {
         GameManager.Instance.RestorePlayerPosition(gameObject);
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        // Input is now managed by InputManager - no manual enabling needed
     }
 
     void Update()
     {
         if (InputManager.Instance == null) return;
 
-        // Get input from InputManager
+        // Active/désactive le mode grimpe si on est sur une échelle et qu'on appuie sur 'E'
+        if (isOnLadder && InputManager.Instance.InteractAction.WasPressedThisFrame())
+        {
+            isClimbing = !isClimbing;
+        }
+
+        // On lit les inputs à chaque frame
         moveInput = InputManager.Instance.MoveAction.ReadValue<Vector2>().x;
-        if (isClimbing)
+        climbInput = InputManager.Instance.MoveAction.ReadValue<Vector2>().y;
+
+        // L'animation de marche ne s'active que si on ne grimpe pas
+        animator.SetFloat("Speed", isClimbing ? 0 : Math.Abs(moveInput));
+        
+        // On ne retourne le personnage que s'il ne grimpe pas
+        if (!isClimbing)
         {
-            climbInput = InputManager.Instance.MoveAction.ReadValue<Vector2>().y;
-            animator.SetBool("IsClimbing", true);
-        }
-        else
-        {
-            animator.SetBool("IsClimbing", false);
+            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight) Flip();
+            if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0 && facingRight) Flip();
         }
 
-        // Set Animation
-        animator.SetFloat("Speed", Math.Abs(moveInput));
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput > 0 && !facingRight)
-        {
-            Flip();
-        }
-        if (!Mathf.Approximately(moveInput, 0.0f) && moveInput < 0 && facingRight)
-        {
-            Flip();
-        }
-
-        // Check if grounded
         CheckGrounded();
         animator.SetBool("isGrounded", isGrounded);
 
-        // Jump
-        if (InputManager.Instance.JumpAction.WasPressedThisFrame() && isGrounded)
+        if (InputManager.Instance.JumpAction.WasPressedThisFrame() && isGrounded && !isClimbing)
         {
             Jump();
         }
 
-        if (!Mathf.Approximately(moveInput, 0.0f) && isGrounded)
+        if (!Mathf.Approximately(moveInput, 0.0f) && isGrounded && !isClimbing) 
         {
             footstepsSound.enabled = true;
         }
-        else
+        else 
         {
             footstepsSound.enabled = false;
         }
@@ -95,40 +108,53 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Movement
-        if (!isClimbing)
+        // La physique est gérée ici
+        if (isClimbing)
         {
-            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+            // En mode Kinematic, on modifie directement la vélocité
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, climbInput * moveSpeed);
         }
         else
         {
-            rb.linearVelocity = new Vector2(moveInput * moveSpeed, climbInput * moveSpeed);
+            // En mode Dynamic, on applique les forces normalement
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+            ApplyJumpPhysics();
         }
+    }
 
-
-        // Better jump physics
-        ApplyJumpPhysics();
+    // Méthode appelée par le script Ladder pour dire au joueur s'il est à portée
+    public void SetIsOnLadder(bool onLadder)
+    {
+        isOnLadder = onLadder;
+        // Si le joueur quitte la zone de l'échelle, on force l'arrêt de la grimpe
+        if (!isOnLadder)
+        {
+            isClimbing = false;
+        }
     }
     
     void Flip()
     {
         facingRight = !facingRight;
-
         Vector3 scale = transform.localScale;
-        scale.x *= -1;  // invert the X scale
+        scale.x *= -1;
         transform.localScale = scale;
     }
 
     void CheckGrounded()
     {
-        // Use OverlapCircle at the groundCheck position
-        if (groundCheck != null)
+        if (isClimbing) 
+        {
+            isGrounded = false; // On ne peut pas être "grounded" en grimpant
+            return;
+        }
+
+        if (groundCheck != null) 
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         }
         else
         {
-            // Fallback: check below player
             Vector2 checkPos = (Vector2)transform.position + Vector2.down * 0.5f;
             isGrounded = Physics2D.OverlapCircle(checkPos, groundCheckRadius, groundLayer);
         }
@@ -143,14 +169,11 @@ public class PlayerController : MonoBehaviour
     void ApplyJumpPhysics()
     {
         if (InputManager.Instance == null) return;
-
-        // Fall faster than rise
-        if (rb.linearVelocity.y < 0)
+        if (rb.linearVelocity.y < 0) 
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
-        // Variable jump height - let go of jump to fall sooner
-        else if (rb.linearVelocity.y > 0 && !InputManager.Instance.JumpAction.IsPressed())
+        else if (rb.linearVelocity.y > 0 && !InputManager.Instance.JumpAction.IsPressed()) 
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
@@ -158,7 +181,6 @@ public class PlayerController : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Visualize ground check in editor
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
