@@ -804,6 +804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TypewriterEffect
   textComponent: {fileID: 1171207785}
   fullText: 'A few moments later
+  fullText: 'A few moments later
 
     .........'
   delayBetweenChars: 0.05
