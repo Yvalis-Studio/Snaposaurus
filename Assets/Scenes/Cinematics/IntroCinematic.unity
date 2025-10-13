@@ -1710,7 +1710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1231252689722035569, guid: 447e763be7d1dacee8545aca15b0f46c, type: 3}
       propertyPath: m_ReferencePixelsPerUnit
-      value: 64
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2086516617355763524, guid: 447e763be7d1dacee8545aca15b0f46c, type: 3}
       propertyPath: m_LocalPosition.x

@@ -57,7 +57,7 @@ public class QTEManager : MonoBehaviour
     public Sprite spriteRightPressedAzerty;
 
     [Header("Key Display Settings")]
-    public float activeKeyScale = 1.2f;
+    public float activeKeyScale = 1.5f;
     public Color activeKeyColor = Color.white;
     public Color queuedKeyColor = new Color(1f, 1f, 1f, 0.6f);
     public float pressedDisplayDuration = 0.2f;
@@ -361,13 +361,13 @@ public class QTEManager : MonoBehaviour
                 // First key is active (larger, full opacity)
                 if (i == 0)
                 {
-                    keyDisplaySlots[i].transform.localScale = Vector3.one * activeKeyScale;
+                    keyDisplaySlots[i].transform.localScale = Vector3.one * 0.45f * activeKeyScale;
                     keyDisplaySlots[i].color = activeKeyColor;
                 }
                 else
                 {
                     // Queued keys are smaller and semi-transparent
-                    keyDisplaySlots[i].transform.localScale = Vector3.one;
+                    keyDisplaySlots[i].transform.localScale = Vector3.one * 0.45f;
                     keyDisplaySlots[i].color = queuedKeyColor;
                 }
             }
