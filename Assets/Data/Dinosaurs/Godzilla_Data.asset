@@ -15,7 +15,7 @@ MonoBehaviour:
   dinosaurName: Godzilla
   dinosaurID: godzilla
   dinosaurPrefab: {fileID: 0}
-  dinosaurSprite: {fileID: -8594477896940013324, guid: c3d1217af0d903344bdf21c2f133a838, type: 3}
+  dinosaurSprite: {fileID: -7957960945577763203, guid: cc2149e33cafd32e0b643746c519b4a1, type: 3}
   baseTimeLimit: 5
   baseKeyCount: 3
   perfectPhoto: {fileID: -1604113851888788210, guid: 79761d3a1091cf74b95aa8c510a06487, type: 3}
