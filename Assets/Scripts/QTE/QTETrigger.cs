@@ -35,7 +35,7 @@ public class QTETrigger : MonoBehaviour
         if (playerInRange)
         {
             bool playerInteracting = InputManager.Instance != null &&
-                                     InputManager.Instance.InteractAction.WasPressedThisFrame();
+                                    InputManager.Instance.InteractAction.WasPressedThisFrame();
 
             if (playerInteracting)
             {
