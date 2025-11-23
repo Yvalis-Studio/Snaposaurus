@@ -18,6 +18,27 @@ public class QTEManager : MonoBehaviour
 
     [Header("Timer Bar")]
     public Slider timerBarSlider;
+    [Tooltip("The background image/texture in the mask container that will change color")]
+    public Image timerBarBackgroundImage;
+    [Tooltip("The fill image of the slider (will be made transparent)")]
+    public Image timerBarFillImage;
+
+    [Header("Timer Bar Quality Thresholds")]
+    [Tooltip("Minimum time ratio (0-1) required for perfect quality")]
+    [Range(0f, 1f)] public float perfectThreshold = 0.5f; // 50% or more = perfect (green)
+    [Tooltip("Minimum time ratio (0-1) required for good quality")]
+    [Range(0f, 1f)] public float goodThreshold = 0.2f; // 20-50% = good (orange)
+    // Below 20% = bad (red) - more visible now
+
+    public Color perfectColor = new Color(0f, 0.66f, 0.22f); // Green (#00A837)
+    public Color goodColor = new Color(1f, 0.75f, 0f); // Yellow-Orange (#FFC000)
+    public Color badColor = new Color(0.9f, 0.15f, 0.15f); // Red (#E62626)
+
+    [Header("Color Transition")]
+    [Tooltip("Speed of color transitions (higher = faster)")]
+    public float colorTransitionSpeed = 5f;
+
+    private Color currentBarColor;
 
     [Header("Countdown Display")]
     public TextMeshProUGUI countdownText;
@@ -67,6 +88,12 @@ public class QTEManager : MonoBehaviour
     public QTESuccessHalo successHaloEffect;
     public float successEffectDuration = 0.5f;
 
+    [Header("Camera Flash Effect")]
+    public Image cameraFlashImage;
+    public float flashDuration = 0.3f;
+    public AnimationCurve flashCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+    public Animator playerAnimator;
+
 
     // DBM PULL
     [Header("Base Countdown Settings")]
@@ -94,6 +121,18 @@ public class QTEManager : MonoBehaviour
 
     void Start()
     {
+        // Configure timer bar direction (right to left) with white fill
+        if (timerBarSlider != null)
+        {
+            timerBarSlider.direction = Slider.Direction.RightToLeft;
+
+            // Make the fill white so it covers the colored background as time runs out
+            if (timerBarFillImage != null)
+            {
+                timerBarFillImage.color = Color.white;
+            }
+        }
+
         // Apply difficulty settings to countdown duration
         if (DifficultySettings.Instance != null)
         {
@@ -151,6 +190,14 @@ public class QTEManager : MonoBehaviour
             perfectImage.gameObject.SetActive(false);
         }
 
+        // Hide camera flash at start
+        if (cameraFlashImage != null)
+        {
+            Color flashColor = cameraFlashImage.color;
+            flashColor.a = 0f;
+            cameraFlashImage.color = flashColor;
+        }
+
         success = false;
         qteActive = false;
     }
@@ -189,15 +236,34 @@ public class QTEManager : MonoBehaviour
         {
             timer -= Time.deltaTime;
 
+            // Clamp timer to prevent negative values
+            float displayTimer = Mathf.Max(0f, timer);
+            float timeRatio = displayTimer / timeLimit; // 1.0 = full time, 0.0 = no time left
+
             if (useTextDisplay && timerText != null)
             {
-                timerText.text = $"Time left : {timer.ToString("F2")} s";
+                timerText.text = $"Time left : {displayTimer.ToString("F2")} s";
             }
 
             // Update timer bar (only when QTE is active)
             if (timerBarSlider != null)
             {
-                timerBarSlider.value = 1f - (timer / timeLimit); // Inverse: vide quand timer diminue
+                // Invert so fill grows as time decreases (right to left with white fill covering colored background)
+                timerBarSlider.value = 1f - timeRatio; // 0 at start (no fill), 1 at end (fully covered)
+
+                // Update timer bar background color with smooth transition
+                if (timerBarBackgroundImage != null)
+                {
+                    Color targetColor = GetQualityColor(timeRatio);
+                    currentBarColor = Color.Lerp(currentBarColor, targetColor, Time.deltaTime * colorTransitionSpeed);
+                    timerBarBackgroundImage.color = currentBarColor;
+                }
+
+                // Debug: Log timer values every second
+                if (Time.frameCount % 60 == 0)
+                {
+                    Debug.Log($"[Timer] timer={displayTimer:F2}s, timeLimit={timeLimit:F2}s, ratio={timeRatio:F2}, sliderValue={timerBarSlider.value:F2}");
+                }
             }
 
             if (timer <= 0f)
@@ -237,7 +303,7 @@ public class QTEManager : MonoBehaviour
 
         timeLimit = adjustedTimer;
         timer = adjustedTimer;
-        // Debug.Log($"Timer initialized: timer={timer}, timeLimit={timeLimit}");
+        Debug.Log($"[QTE] Timer initialized: timer={timer:F2}s, timeLimit={timeLimit:F2}s");
         qteActive = true;
         success = false;
         perfect = true;
@@ -253,11 +319,22 @@ public class QTEManager : MonoBehaviour
             timerText.gameObject.SetActive(true);
         }
 
-        // Show timer bar
+        // Show timer bar and force immediate update
         if (timerBarSlider != null)
         {
             timerBarSlider.gameObject.SetActive(true);
-            timerBarSlider.value = 0f; // Start vide (blanc)
+            timerBarSlider.value = 0f; // Start empty (no white fill, background fully visible)
+
+            // Set initial color (green - perfect)
+            if (timerBarBackgroundImage != null)
+            {
+                currentBarColor = GetQualityColor(1f);
+                timerBarBackgroundImage.color = currentBarColor;
+            }
+
+            // Force immediate visual update
+            timerBarSlider.value = 0.01f; // Tiny value to force Unity to update
+            timerBarSlider.value = 0f; // Back to 0
         }
 
         // Hide countdown when QTE starts
@@ -446,16 +523,17 @@ public class QTEManager : MonoBehaviour
         {
             nextKeyText.text = "Success!";
         }
-        // Invoke(nameof(HidePrompt), 0.5f);
-        if (perfect)
+
+        // Set score on the current dinosaur
+        if (dinosaur != null)
         {
-            GameManager.Instance.Dino1.score = 3;
+            dinosaur.score = perfect ? 3 : 2;
         }
         else
         {
-            GameManager.Instance.Dino1.score = 2;
+            Debug.LogError("[QTE] Cannot set score - dinosaur reference is null!");
         }
-        // SceneTransition.Instance.TransitionToScene("Level 1");
+
         Invoke(nameof(ExitQTE), 1.0f);
     }
 
@@ -599,6 +677,7 @@ public class QTEManager : MonoBehaviour
     IEnumerator DoQTESuccessCoroutine()
     {
         string currentKey = qteNextKey;
+        bool isLastKey = (qteKeyList.Count == 0);
 
         // Show pressed sprite
         if (keyDisplaySlots.Length > 0 && keyDisplaySlots[0] != null)
@@ -620,9 +699,43 @@ public class QTEManager : MonoBehaviour
         // Advance to next key
         if (!GetNextKey())
         {
-            // This was the last key - trigger success
+            // This was the last key - trigger player animation, camera flash and then success
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetTrigger("Success");
+            }
+
+            if (cameraFlashImage != null)
+            {
+                StartCoroutine(CameraFlashCoroutine());
+            }
             QTESuccessComplete();
         }
+    }
+
+    IEnumerator CameraFlashCoroutine()
+    {
+        if (cameraFlashImage == null) yield break;
+
+        float elapsed = 0f;
+
+        while (elapsed < flashDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / flashDuration;
+            float alpha = flashCurve.Evaluate(t);
+
+            Color flashColor = cameraFlashImage.color;
+            flashColor.a = alpha;
+            cameraFlashImage.color = flashColor;
+
+            yield return null;
+        }
+
+        // Ensure flash is fully hidden at the end
+        Color finalColor = cameraFlashImage.color;
+        finalColor.a = 0f;
+        cameraFlashImage.color = finalColor;
     }
 
     void ShowFailedFeedback()
@@ -726,5 +839,24 @@ public class QTEManager : MonoBehaviour
     {
         // Update the sprite display to use new layout sprites
         UpdateKeySpriteDisplay();
+    }
+
+    /// <summary>
+    /// Get the color for the timer bar based on quality thresholds
+    /// </summary>
+    Color GetQualityColor(float timeRatio)
+    {
+        if (timeRatio >= perfectThreshold)
+        {
+            return perfectColor; // Green - Perfect quality
+        }
+        else if (timeRatio >= goodThreshold)
+        {
+            return goodColor; // Orange - Good quality
+        }
+        else
+        {
+            return badColor; // Red - Bad quality
+        }
     }
 }

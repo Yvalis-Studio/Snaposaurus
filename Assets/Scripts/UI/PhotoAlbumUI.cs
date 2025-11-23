@@ -162,7 +162,7 @@ public class PhotoAlbumUI : MonoBehaviour
             triceratopsPerfect
         );
 
-        // Brachiosaurus (formerly Diplodocus)
+        // Brachiosaurus
         SetupDinosaurSlots(
             "brachiosaurus",
             diploData,

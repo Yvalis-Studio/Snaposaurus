@@ -315,7 +315,6 @@ public class MenuNavigation : MonoBehaviour
     public void ShowPhotoAlbum()
     {
         HideAll();
-        Debug.Log("Tout caché...");
 
         // Activate the panel first so the coroutine can run
         if (photoAlbumPanel != null)

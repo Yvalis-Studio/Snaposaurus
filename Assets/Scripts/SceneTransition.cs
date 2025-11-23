@@ -16,6 +16,12 @@ public class SceneTransition : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // Validate required components
+            if (fadeImage == null)
+            {
+                Debug.LogError("[SceneTransition] fadeImage is not assigned! Scene transitions will not work properly.");
+            }
         }
         else
         {
@@ -42,6 +48,12 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator Fade(float targetAlpha)
     {
+        if (fadeImage == null)
+        {
+            Debug.LogWarning("[SceneTransition] fadeImage is null - skipping fade effect");
+            yield break;
+        }
+
         Color color = fadeImage.color;
         float startAlpha = color.a;
         float timer = 0f;

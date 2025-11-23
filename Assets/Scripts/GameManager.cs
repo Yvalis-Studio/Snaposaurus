@@ -4,11 +4,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public DinosaurQTE Dino1;
     public Vector3 playerPosition;
 
     [Header("Current Encounter")]
+    [SerializeField]
+    [Tooltip("Current dinosaur encounter data - set by QTETrigger before transitioning to QTE scene")]
     private DinosaurData currentDinosaurEncounter;
+
     [Header("Photo Album")]
     public PhotoAlbumData photoAlbumData;
 
@@ -23,12 +25,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             Debug.Log("[GameManager] Instance created and will persist across scenes");
-
-            // Legacy field - only set if assigned
-            if (Dino1 != null)
-            {
-                Dino1.isActive = true;
-            }
 
             // Initialize PhotoAlbumData if not already present
             if (photoAlbumData == null)

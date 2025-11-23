@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary> 
-/// Manages saving and loading of photo album dta using PlayerPrefs.
-/// Singleton pattern with DontDestroyOnload for persistence accross scenes.
+/// <summary>
+/// Manages saving and loading of photo album data using PlayerPrefs.
+/// Singleton pattern with DontDestroyOnLoad for persistence across scenes.
 /// </summary>
 public class PhotoAlbumData : MonoBehaviour
 {
     public static PhotoAlbumData Instance;
 
-    // Known dinosaur IDs in the game
+    [Header("Dinosaur Configuration")]
+    [SerializeField]
+    [Tooltip("List of all known dinosaur IDs in the game. Add new dinosaurs here.")]
     private List<string> knownDinosaurs = new List<string> { "archeo", "triceratops", "brachiosaurus", "godzilla" };
 
     void Awake()
@@ -31,12 +33,12 @@ public class PhotoAlbumData : MonoBehaviour
     /// Save a photo to the album. Photos are cumulative (you can unlock all 3 qualities separately).
     /// </summary>
     /// <param name="dinosaurID">Unique dinosaur identifier (e.g., "archeo", "triceratops")</param>
-    /// <param name="quality">Photo quality: 1= blurry, 2=clear, 3=perfect</param>
+    /// <param name="quality">Photo quality: 1=blurry, 2=clear, 3=perfect</param>
     public void SavePhoto(string dinosaurID, int quality)
     {
         if (string.IsNullOrEmpty(dinosaurID))
         {
-            Debug.LogError("[PhotoAlbumData] Connot save photo: dinosaurID is null or empty");
+            Debug.LogError("[PhotoAlbumData] Cannot save photo: dinosaurID is null or empty");
             return;
         }
 

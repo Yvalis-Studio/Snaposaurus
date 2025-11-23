@@ -59,7 +59,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.RestorePlayerPosition(gameObject);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RestorePlayerPosition(gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerController] GameManager.Instance is null - cannot restore player position");
+        }
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }

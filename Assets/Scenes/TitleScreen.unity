@@ -17988,6 +17988,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffc7ab56bef453728f194b8d92511ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhotoAlbumData
+  knownDinosaurs:
+  - archeo
+  - triceratops
+  - brachiosaurus
+  - godzilla
 --- !u!4 &1955350873
 Transform:
   m_ObjectHideFlags: 0

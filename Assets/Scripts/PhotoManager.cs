@@ -74,7 +74,6 @@ public void ShowAndSavePhoto(string dinoName, Sprite photoSprite, bool isSuccess
     /// </summary>
     public void HidePhoto()
     {
-        Debug.Log("hiding photo panel");
         if (photoDisplayPanel != null)
         {
             photoDisplayPanel.SetActive(false);
