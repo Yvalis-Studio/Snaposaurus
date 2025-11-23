@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Current Encounter")]
     private DinosaurData currentDinosaurEncounter;
+    [Header("Photo Album")]
+    public PhotoAlbumData photoAlbumData;
 
     [Header("Difficulty Settings")]
     [SerializeField]
@@ -20,7 +22,19 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Dino1.isActive = true;
+            Debug.Log("[GameManager] Instance created and will persist across scenes");
+
+            // Legacy field - only set if assigned
+            if (Dino1 != null)
+            {
+                Dino1.isActive = true;
+            }
+
+            // Initialize PhotoAlbumData if not already present
+            if (photoAlbumData == null)
+            {
+                photoAlbumData = gameObject.AddComponent<PhotoAlbumData>();
+            }
 
             // Set difficulty in DifficultySettings if it exists
             if (DifficultySettings.Instance != null)
@@ -30,6 +44,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning("[GameManager] Duplicate GameManager detected and destroyed. Instance remains valid.");
             Destroy(gameObject);
         }
     }
@@ -85,6 +100,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public DinosaurData GetCurrentDinosaurEncounter()
     {
+        Debug.Log($"[GameManager] GetCurrentDinosaurEncounter called. Instance is {(Instance != null ? "valid" : "NULL")}");
         if (currentDinosaurEncounter == null)
         {
             Debug.LogWarning("[GameManager] No dinosaur encounter data found! Did you enter QTE scene directly?");

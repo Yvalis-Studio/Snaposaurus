@@ -2679,17 +2679,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2b776f9444f314d9c81e7c6c7e373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DinosaurQTE
+  qteManager: {fileID: 851164212}
+  photoManager: {fileID: 68239339}
+  photoDisplayDelay: 1.5
+  autoRetry: 1
+  retryDelay: 4
+  dinosaurData: {fileID: 0}
   baseTimeLimit: 5
   baseKeyCount: 3
   dinoName: T-Rex
   perfectPhoto: {fileID: 0}
   clearPhoto: {fileID: 0}
   blurryPhoto: {fileID: 0}
-  qteManager: {fileID: 851164212}
-  photoDisplayDelay: 1.5
-  autoRetry: 1
-  retryDelay: 4
-  photoManager: {fileID: 68239339}
   isActive: 1
   score: 0
 --- !u!1 &1899522616

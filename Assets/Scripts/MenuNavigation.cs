@@ -14,6 +14,7 @@ public class MenuNavigation : MonoBehaviour
     public GameObject audioPanel;
     public GameObject levelSelectPanel;
     public GameObject pausePanel;
+    public GameObject photoAlbumPanel; // Photo album panel
 
     [Header("Canvas Root")]
     public GameObject canvasRoot;
@@ -67,11 +68,11 @@ public class MenuNavigation : MonoBehaviour
     void Update()
     {
         // ESC pour pause/unpause en jeu (using new Input System)
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         if (isInGame && UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
-        #else
+#else
         if (isInGame && InputManager.Instance != null && InputManager.Instance.PauseAction.WasPressedThisFrame())
-        #endif
+#endif
         {
             if (gameIsPaused)
                 Resume();
@@ -295,6 +296,7 @@ public class MenuNavigation : MonoBehaviour
         if (audioPanel != null) audioPanel.SetActive(false);
         if (levelSelectPanel != null) levelSelectPanel.SetActive(false);
         if (pausePanel != null) pausePanel.SetActive(false);
+        if (photoAlbumPanel != null) photoAlbumPanel.SetActive(false);
     }
 
     public void LoadLevel(string levelName)
@@ -305,5 +307,34 @@ public class MenuNavigation : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    /// <summary>
+    /// Show the photo album panel.
+    /// </summary>
+    public void ShowPhotoAlbum()
+    {
+        HideAll();
+        Debug.Log("Tout caché...");
+
+        // Activate the panel first so the coroutine can run
+        if (photoAlbumPanel != null)
+        {
+            photoAlbumPanel.SetActive(true);
+
+            PhotoAlbumUI albumUI = photoAlbumPanel.GetComponent<PhotoAlbumUI>();
+            if (albumUI != null)
+            {
+                albumUI.OpenAlbum();
+            }
+            else
+            {
+                Debug.LogError("[MenuNavigation] PhotoAlbumUI component not found on photoAlbumPanel!");
+            }
+        }
+        else
+        {
+            Debug.LogError("[MenuNavigation] photoAlbumPanel is not assigned!");
+        }
     }
 }

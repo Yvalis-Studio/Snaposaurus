@@ -3,33 +3,28 @@ using UnityEngine;
 
 public class DinosaurQTE : MonoBehaviour
 {
-    [Header("QTE Difficulty Settings")]
-    [Tooltip("BASE time limit in seconds. Difficulty multiplies this (Easy: 1.5x, Normal: 1.0x, Hard: 0.75x)")]
-    public float baseTimeLimit = 5f;
-
-    [Tooltip("BASE number of keys to press. Difficulty adds to this (Easy: +0, Normal: +2, Hard: +4)")]
-    public int baseKeyCount = 3;
-
-    [Header("Dinosaur Info")]
-    public string dinoName = "";
-
-    [Header("Photo Sprites")]
-    public Sprite perfectPhoto; // Photo perfect si succès
-    public Sprite clearPhoto; // Photo nette si succès
-    public Sprite blurryPhoto; // Photo floue si échec
-
     [Header("References")]
     public QTEManager qteManager;
-    public float photoDisplayDelay = 1.5f; // Délai après le message de succès/échec
+    public PhotoManager photoManager;
+
+    [Header("Display Settings")]
+    public float photoDisplayDelay = 1.5f; // Delay after success/failure message before showing photo
 
     [Header("Retry Settings")]
     public bool autoRetry = true;
-    public float retryDelay = 4f; // Délai avant de relancer le QTE
+    public float retryDelay = 4f; // Delay before restarting QTE after failure
+
+    // Runtime data - assigned dynamically by QTESceneInitializer
+    [HideInInspector] public DinosaurData dinosaurData;
+    [HideInInspector] public float baseTimeLimit;
+    [HideInInspector] public int baseKeyCount;
+    [HideInInspector] public string dinoName;
+    [HideInInspector] public Sprite perfectPhoto;
+    [HideInInspector] public Sprite clearPhoto;
+    [HideInInspector] public Sprite blurryPhoto;
 
     private bool photoShown = false;
     private bool qteWasActive = false;
-
-    public PhotoManager photoManager;
 
     void Start()
     {
@@ -93,7 +88,11 @@ public class DinosaurQTE : MonoBehaviour
         {
             // Show and save the photo
             Debug.Log("Calling PhotoManager.ShowAndSavePhoto...");
-            photoManager.ShowAndSavePhoto(dinoName, photoToShow, qteManager.isSuccess);
+            // Get dinosaurID from DinosaurData, fallback to dinoName if not available
+            string dinosaurID = (dinosaurData != null) ? dinosaurData.dinosaurID : dinoName.ToLower();
+            bool isPerfect = qteManager.perfect;
+
+            photoManager.ShowAndSavePhoto(dinoName, photoToShow, qteManager.isSuccess, isPerfect, dinosaurID);
         }
         else
         {

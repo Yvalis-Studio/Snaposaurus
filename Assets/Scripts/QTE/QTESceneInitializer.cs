@@ -56,6 +56,7 @@ public class QTESceneInitializer : MonoBehaviour
             dinosaurQTE.perfectPhoto = dinosaurData.perfectPhoto;
             dinosaurQTE.clearPhoto = dinosaurData.clearPhoto;
             dinosaurQTE.blurryPhoto = dinosaurData.blurryPhoto;
+            dinosaurQTE.dinosaurData = dinosaurData; // NEW: Assign the full DinosaurData reference for photo album
 
             Debug.Log($"[QTESceneInitializer] Configured DinosaurQTE: {dinosaurData.dinosaurName}, Keys: {dinosaurData.baseKeyCount}, Time: {dinosaurData.baseTimeLimit}s");
         }
